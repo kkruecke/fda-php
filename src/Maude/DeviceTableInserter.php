@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class DeviceInsertIterator implements DatabaseInsertIterator {
+class DeviceTableInserter implements DatabaseInsertIterator, \Iterator {
 
   public function insert(\Ds\Vector $vec) : void;
 

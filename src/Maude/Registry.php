@@ -12,7 +12,8 @@ class Registry implements \ArrayAccess {
     public static function init() : void
     {
          if (count(self::$container) == 0) {	  
-	      
+	    // TODO: Replace ini with .xml and use SimpleXML to read it.
+  
             @self::$container = parse_ini_file("maude.ini", true); 
          }
     }

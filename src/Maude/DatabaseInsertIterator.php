@@ -1,7 +1,7 @@
 <?<?php
 namespace Maude;
 
-interface DatabaseInsertIterator implements \Iterator  {
+interface DatabaseInserter  {
 
    pubic function insert(\Ds\Vector $vec) : void {}
 }

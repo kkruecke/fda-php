@@ -6,19 +6,22 @@ require_once("class_loader.php");
 
 boot_strap();
 
-function copy_if(SplFileObjectEx $file_iter, DBInsertIterator $db_iter,  lambda/closure)
+function copy_if(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  lambda/closure)
 {
-  foreach ($fileiter as $vec) {
+  foreach ($file_iter as $vec) {
 
-        if ($vec is new) {
+     if (is_new_data($vec)) {
 
+         $db_iter->insert();
+     } 
 
-        } 
+     $db_iter->next();
   }
 }
 
 try {
-      
+    // TODO: Change Registry to use .xml fie and SimpleXML  
+
    $db_settings = Registry::registry('database');
    
    $db_handle = new \PDO("mysql:host=localhost;dbname=" . $db_settings['dbname'],
@@ -30,8 +33,6 @@ try {
   $file_handlers = Registry::registry('file_handlers'); 
 
   foreach(Registry::registry('file_names') as $file_type => $file_name) {
- 
-    // TODO: Change to use .xml fie and SimpleXML
 
     $className = "Maude\\" .  $file_handlers[$file_type]; 
         
@@ -44,6 +45,8 @@ try {
   }
 
   echo "\nupdateDatabase() complete\n"; // debug
+
+  // TODO: Add code to insert new Maude tables data into medwatch_report table.
 
 } catch (Exception $e) {
 

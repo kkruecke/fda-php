@@ -3,7 +3,7 @@ namespace Maude;
  
 class SplFileObjectExt extends \SplFileObject   { 
 
-    private $position;
+    private $line_no;
 
     public function __construct(string $filename, string $mode = 'r')
     {
@@ -11,27 +11,33 @@ class SplFileObjectExt extends \SplFileObject   {
 
        parent::setFlags(\SplFileObject::READ_AHEAD | \SplFileObject::SKIP_EMPTY);
 
-       $this->position = 1;
+       $this->line_no = 1;
     }
 
-    public function rewind() : void  // TODO: Isn't this what SplFileObject returns, anyway? Therefore can't I use it directly?
+    public functon current() : string
+    {
+      // TODO: Implement
+
+    }
+
+    public function rewind() : void 
     {
         parent::rewind();
-        $this->position = 1;
+        $this->line_no = 1;
     }
 
-    public function key() : int  // TODO: Isn't this what SplFileObject returns, anyway? Therefore can't I use it directly?
+    public function key() : int  
     {
-        return $this->position;
+        return $this->line_no;
     }
 
-    public function next() : void // TODO: Isn't this what SplFileObject returns, anyway? Therefore can't I use it directly?
+    public function next() : void 
     {
         parent::next();
 
         if (parent::valid()) {
 
-            ++$this->position; 
+            ++$this->line_no; 
         }
     }
 }

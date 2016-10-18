@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class MdrInsertIterator implements DatabaseInsertIterator {
+class TextTableInserter implements DatabaseInsertIterator, \Iterator {
 
   public function insert(\Ds\Vector $vec) : void;
 
