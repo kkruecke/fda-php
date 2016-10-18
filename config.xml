@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+<database>
+  <host>localhost</host>
+  <name>medwatch_latest</name>
+  <user>kurt</user>
+  <password>kk0457</password>
+</database>
+<files>
+    <file name="data/foidev.txt" type="device">
+    </file>
+    <file name="data/mdrfoi.txt" type="mdr">
+    </file>
+    <file name="data/foitext.txt" type="text">
+    </file>
+</files>
+</configuration>

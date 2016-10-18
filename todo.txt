@@ -1,0 +1,14 @@
+
+1. Understand remaining SPL iterator classes and how they are to be used in the functional programming paragdigm.
+
+2. Change .ini files to .xml file and use SimpleXML to parse.
+
+3. Possibly remove setUp() method, putting it in Ctors.
+
+4. Model code after C++ version and copy_if().
+
+5. Change Registry to read an xml file using SimpleXML
+
+6. Understand functional programming with SPL iterators--specifically LimitIterator, FilterIterator, etc--and how to compose or more generally use them.
+
+7. Replace any array_search()'es with sort arrays that do binary_search().

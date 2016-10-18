@@ -1,0 +1,6 @@
+composer.lock
+data/
+nbproject/
+vendor/
+*.swp
+.hhconfig

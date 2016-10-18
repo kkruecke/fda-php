@@ -1,0 +1,56 @@
+LASIK Maude Data Extraction code
+================================
+
+ds PHP Extension Dependency
+---------------------------
+
+The code uses the PHP ds extension described at http://php.net/manual/en/ds.installation.php and https://github.com/php-ds/extension/blob/master/README.md.
+
+Note: To enable the extension, create the following file /etc/php/7.0/mods-available/ds.ini wit the contents of
+
+    ; configuration for php ds module
+    ; priority=30
+    extension=ds.so 
+
+Then do (on Linux Mint and Ubuntu):
+
+    $ sudo phpenmod ds
+
+Without doing this, you will get: unable to load '/usr/lib/..../ds.so' undefined symbol json....
+
+Comments
+--------
+
+The **medwatch** database contains all the lasik adverse event reports since 1998. Its single medwatch\_report table was built from joining data from the three tables
+in the maude database. However, the original maude database (with data from 1998 to the present no longer exists). Instead only the **maude\_2014** database contains
+event reports from patients (and possibly clinics and manufacturers) dating from 1998. 
+
+To first update the maude database, run the update-maude script:
+
+    php -f update-maude
+
+The code is driven by the maude.ini file. The single input file for Text, Device, etc should contain the latest or prospective lastest data. To create this file:
+
+1. Concatenate the files into one file
+2. Sort it by the first key, the mdr\_report\_key
+3. Remove duplicate lines
+4. Add the name of the single file to maude.ini
+
+For example, below we concatenate to foixtextXXX.txt files, sort it by the first field, the mdr\_report\_key, then remove duplicates:
+
+    $ cat fitext1.txt >> foitext2.txt
+    $ sort -t'|' -k1 foitext2.txt | uniq > foitext.txt
+
+Then we edit maude.ini with the name of the input data file. We then 
+
+1. run the php script **update-maude** to update the maude database tables with the new lasik adverse event reports from patients.
+
+2. Lastly, the php script **medwatch-update** adds new records to the medwatch\_report table in the maude database--I believe. 
+
+3. Then finally a manual sql command inserts new these new medwatch\_report records into the medwatch database.
+
+Note: I am not certain about the last two steps. medwatch-update-prior -- whose purpose I forget -- actually instantiates a PDO object, which medwatch-update does not
+yet do. 
+
+Currently mdr\_report\_key is unique in maude database tables mdrfoi, foidevice and foitext. I'm not sure it was initially. For future code, can we assume it is unique 
+with in the .txt files? 
