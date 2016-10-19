@@ -2,13 +2,14 @@
 namespace Maude;
 
 /*
- * Work further on design. This started as a Template Method pattern.
+ * Database insert iterator 
  */
 
 class AbstractMaudeLasikInserter extends AbstractTableInserter {
 
   private $pdo;
   private \PDOStatement $stmt;
+  private $rc;
 
   abstract protected function bindParameters(\PDOStatement $stmt) : void;   // not implemented
 
@@ -24,9 +25,9 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
 
   public function __construct(\PDO $pdo_in, string $insert_sql_str) 
   {
-       $this->pdo = $pdo_in;
+       $this->rc = true;
 
-       $this->pdo->setExceptions(???);
+       $this->pdo = $pdo_in;
 
        $this->stmt = $this->pdo->prepare($insert_str); 
 
@@ -40,14 +41,15 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
    
   public function valid() : bool
   {
-     return true;
+     return $rc;
   }
 
   public function rewind() : bool
   {
+     return true;
   } 
   
-  public function current() : \PDOStatement;
+  abstract public function current() : \PDOStatement; // TODO: <-- What should this return?
   
   public function key() : int;
 

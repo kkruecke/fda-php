@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class TextTableFilterIterator {
+class TextTableFilterIterator  implements AbstractMaudeLasikIterator, \Iterator {
 
      use ExistsInDeviceTableTrait;
 

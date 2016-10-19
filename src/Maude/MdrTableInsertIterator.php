@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class MdrTableInsertIterator implements DatabaseInsertIterator, \Iterator {
+class MdrTableInsertIterator implements AbstractMaudeLasikIterator, \Iterator {
 
    private  $device_product_code;
    private  $device_key;
