@@ -18,24 +18,20 @@ try {
    
    $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
    
-     foreach($config->getFiles()->file as $file) {
+   foreach($config->getFiles()->file as $file) {
+       
+      $fileIter = new SplFileObjectExtended($file['name']); 
+  
+      $filter_iterator = new $file['filter_iter']($pdo, $fileIter); 
+          
+      $db_iter = new $file['dbinsert_iter'];    
       
-     echo $file['name'] . "\n";
-     
-     $fileIter = new SplFileObjectExtended($file['name']); 
-
-     $filter_iterator = new $file['filter_iter']($pdo, $fileIter); 
-         
-     $db_iter = new $file['dbinsert_iter'];    
-    
-     // Copy filtered file results to database
-     foreach ($filterIter as $vector) {
-
-        $db_iter->insert($vector);
-     }
+      // Copy filtered file results to database using database iterator.
+      foreach ($filterIter as $vector) {
+  
+          $db_iter->insert($vector);
+      }
   }
-
-  echo "\nupdateDatabase() complete\n"; // debug
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.
 
