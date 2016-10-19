@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-require_once("algorithms.php");
+require_once("stdlib/algorithms.php");
 
 class DeviceTableFilterIterator {
 

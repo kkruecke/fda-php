@@ -1,6 +1,6 @@
 <?php
 
-require_once("algorithms.php");
+require_once("stdlib/algorithms.php");
 
 trait ExistsinDeviceTableTrait {
 
