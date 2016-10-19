@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class TextTableInserter implements DatabaseInsertIterator, \Iterator {
+class TextTableInsertIterator implements DatabaseInsertIterator, \Iterator {
 
   private $mdr_report_key;
   private $text_report;

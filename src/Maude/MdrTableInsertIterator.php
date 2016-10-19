@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class MdrTableInserter implements DatabaseInsertIterator, \Iterator {
+class MdrTableInsertIterator implements DatabaseInsertIterator, \Iterator {
 
    private  $device_product_code;
    private  $device_key;
