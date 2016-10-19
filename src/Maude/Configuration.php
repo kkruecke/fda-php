@@ -15,9 +15,10 @@ class Configuration {
        self::init($filename);
     }
 
-    static protected function init(string $filename)
+    protected static function init(string $filename)
     {
-       if ($filename.empty()) return;
+       if (empty($filename))
+               return;
 
        $config = simplexml_load_file($filename);
 
@@ -35,16 +36,15 @@ class Configuration {
 	return self::$files;
     }
 
-    static public function getConfiguration(string $file_name="") : Configuraton
+    public static function getConfiguration(string $file_name="") : Configuration
     {
-      static $the_configuration = new Configuration($file_name);
-
-        if (!$file_name.empty()) {
-
-            self::init($filename);
+      static $the_configuration;
+      
+        if (!isset($the_configuration) && !empty($file_name)) {
+          
+             $the_configuration = new Configuration($file_name);
         }
-      } 
-
+       
       return $the_configuration;
     }
 }

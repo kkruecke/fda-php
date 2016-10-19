@@ -1,6 +1,7 @@
+#!/usr/bin/php
 <?php
-use Maude\{Configuration as Configuration, SplFileObjectExtended as SplFileObjectExtended, DeviceTableFilterIterator as  DeviceTableFilterIterator,
-DeviceTableInsertIterator as DeviceTableInsertIterator, MdrTableFilterIterator as  MdrTableFilterIterator, MdrTableInsertIterator as MdrTableInsertIteratpr, 
+use Maude\{Configuration as Configuration, SplFileObjectExtended as SplFileObjectExtended, DeviceTableFilterIterator as  DeviceTableFilterIterator,\
+DeviceTableInsertIterator as DeviceTableInsertIterator, MdrTableFilterIterator as  MdrTableFilterIterator, MdrTableInsertIterator as MdrTableInsertIteratpr,\ 
 TextTableFilterIterator as  TextTableFilterIterator, TextTableInsertIterator as TextTableInsertIterator}; 
 
 require_once("class_loader.php");
@@ -9,14 +10,14 @@ boot_strap();
 
 try {
 
-   $config = Configuration::getConfiguration('config.xml');
+   $config = Configuration::getConfiguration('file_name');
    
    $db_handle = new \PDO("mysql:host=" . $config->database->host . ";dbname=" . $config->getDatabase()->dbname,
                          $config->getDatabase()->dbuser, $config->getDatabase()->dbpasswd);  
    
   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
 
-  foreach($config->getFiles() as $file) {
+  foreach($config.getFiles() as $file) {
 
     $filter_iterator = new $file["filter_iter"](new $file["dbinsert_iter"]($pdo));
     
