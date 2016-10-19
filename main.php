@@ -35,25 +35,24 @@ function copy(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  la
 try {
     // TODO: Change Registry to use .xml fie and SimpleXML  
 
-   $configuration = Registry::create('config.xml');
+   $config = Configuration::load('config.xml');
    
-   $db_handle = new \PDO("mysql:host=localhost;dbname=" . $db_settings['dbname'],
-                         $db_settings['dbuser'],
-                         $db_settings['dbpasswd']);  
+   $db_handle = new \PDO("mysql:host=" . $config->database->host . ";dbname=" . $config->getDatabase()->dbname,
+                         $config->getDatabase()->dbuser, $config->getDatabase()->dbpasswd);  
    
   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
 
-  $file_handlers = Registry::registry('file_handlers'); 
-
-  foreach(Registry::registry('file_names') as $file_type => $file_name) {
+  foreach($config.getFiles() => $file_name) {
 
     $className = "Maude\\" .  $file_handlers[$file_type]; 
         
-    $databaseInserter = new $className($file_name, $db_handle);
+    $databaseInsertIterator = new $className($file_name, $db_handle);
 
     $file_iterator = new SplFileObjectEx($file_name);
   
-    copy_if($file_iterator, $datatbaseInserter, lamba_closure {} );
+    $filter_iterator = new  "Maude\\" . $filter_iterator($file_iterator);
+  
+    copy($filter_iterator, $datatbaseInsertIterator, lamba_closure {} );
 
   }
 
