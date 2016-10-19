@@ -1,39 +1,14 @@
 #!/usr/bin/php
 <?php
-use Maude\Configuration as Configuration;
+use Maude\{Configuration as Configuration, SplFileObjectExtended as SplFileObjectExtended, DeviceTableFilterIterator as  DeviceTableFilterIterator,\
+DeviceTableInsertIterator as DeviceTableInsertIterator, MdrTableFilterIterator as  MdrTableFilterIterator, MdrTableInsertIterator as MdrTableInsertIteratpr,\ 
+TextTableFilterIterator as  TextTableFilterIterator, TextTableInsertIterator as TextTableInsertIterator}; 
 
 require_once("class_loader.php");
 
 boot_strap();
 
-function copy_if(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  lambda/closure)
-{
-  foreach ($file_iter as $vec) {
-
-     if (is_new_data($vec)) {
-
-         $db_iter->insert();
-     } 
-
-     $db_iter->next();
-  }
-}
-
-function copy(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  lambda/closure)
-{
-  foreach ($file_iter as $vec) {
-
-
-         $db_iter->insert();
-     } 
-
-     $db_iter->next();
-  }
-}
-
-
 try {
-    // TODO: Change Registry to use .xml fie and SimpleXML  
 
    $config = Configuration::getConfiguration('file_name');
    
@@ -42,18 +17,17 @@ try {
    
   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
 
-  foreach($config.getFiles() => $file_name) {
+  foreach($config.getFiles() as $file) {
 
-    $className = "Maude\\" .  $file_handlers[$file_type]; 
-        
-    $databaseInsertIterator = new $className($file_name, $db_handle);
+    $filter_iterator = new $file["filter_iter"](new $file["dbinsert_iter"]($pdo));
+    
+    $file_iterator = new SplFileObjectExtended($file["name"]);
 
-    $file_iterator = new SplFileObjectEx($file_name);
-  
-    $filter_iterator = new  "Maude\\" . $filter_iterator($file_iterator);
-  
-    copy($filter_iterator, $datatbaseInsertIterator, lamba_closure {} );
+    // Copy filtered file results to database
+    foreach ($filterIter as $vector) {
 
+       $db_iter->insert($vector);
+    }
   }
 
   echo "\nupdateDatabase() complete\n"; // debug

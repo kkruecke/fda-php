@@ -1,5 +1,5 @@
 <?php
-class DeviceTableFilterIterator {
+class DeviceTableFilterIterator extends \FilterIterator {
 
      private $max_mdr_report_key;
      private $max_mdr_report_key_index = 0; // TODO: Is 0 correct?

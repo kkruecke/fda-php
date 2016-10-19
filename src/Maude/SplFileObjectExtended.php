@@ -1,7 +1,7 @@
 <?<?php
 namespace Maude;
  
-class SplFileObjectExt extends \SplFileObject   { 
+class SplFileObjectExtended extends \SplFileObject   { 
 
     private $line_no;
 

@@ -7,11 +7,11 @@
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" type="device">
+    <file name="data/foidev.txt" filter_iter="DeviceTableFilterIterator" dbinsert_iter="DeviceTableInsertIterator">
     </file>
-    <file name="data/mdrfoi.txt" type="mdr">
+    <file name="data/mdrfoi.txt"  filter_iter="MdrTableFilterIterator" dbinsert_iter="MdrTableInsertIterator">
     </file>
-    <file name="data/foitext.txt" type="text">
+    <file name="data/foitext.txt"  filter_iter="TextTableFilterIterator" dbinsert_iter="TextTableInsertIterator">
     </file>
 </files>
 </configuration>
