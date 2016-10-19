@@ -3,8 +3,6 @@ namespace Maude;
 
 class DeviceTableInserter implements AbstractMaudeLasikIterator, \Iterator {
 
-  private $pdo;
-
   private $mdr_report_key;
   private $device_product_code;
 
@@ -29,17 +27,8 @@ class DeviceTableInserter implements AbstractMaudeLasikIterator, \Iterator {
     $this->mdr_report_key = $vec[0];
     $this->device_report_code = $vec[1];
   }
-
-  public function valid() : bool
-  {
-     return true;
-  }
-
-  public function rewind() : bool
-  {
-
-  } 
-  
+ 
+  // TODO: What to do about these methods that are abstract, right? 
   public function current() : \PDOStatement;
   
   public function key() : int;

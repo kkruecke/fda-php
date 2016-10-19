@@ -10,11 +10,19 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
   private $pdo;
   private \PDOStatement $stmt;
 
-  protected function bindParameters(\PDOStatement $stmt) : void;   // not implemented
+  abstract protected function bindParameters(\PDOStatement $stmt) : void;   // not implemented
 
-  protected function assignParameters(\Ds\Vector $vec) : void;     // not implemented
+  abstract protected function assignParameters(\Ds\Vector $vec) : void;     // not implemented
 
-  public function __construct(\PDO $pdo_in, string $insert_str) 
+  /*
+   * The ctor is a "template method" pattern that invokes the bindParameters, which derived classes must override
+   * input: 
+   * 1. PDO object
+   * 2. SQL insertion string text
+   * 
+   */
+
+  public function __construct(\PDO $pdo_in, string $insert_sql_str) 
   {
        $this->pdo = $pdo_in;
 
@@ -43,12 +51,15 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
   
   public function key() : int;
 
-   // template method pattern
+  /* 
+   * insert() is a "template method" pattern that invokes the assignParameters, which derived classes must override to assign the parameters for the 
+   * prepared statement. 
+   */
   public function insert(\Ds\Vector $vec) : void
   {
        assignParameters($vec);       
     
-       $thi->stmt->execute();
+       $rc = $this->stmt->execute();
   }
 }
 ?>
