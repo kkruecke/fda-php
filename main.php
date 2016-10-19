@@ -35,7 +35,7 @@ function copy(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  la
 try {
     // TODO: Change Registry to use .xml fie and SimpleXML  
 
-   $config = Configuration::load('config.xml');
+   $config = Configuration::getConfiguration('file_name');
    
    $db_handle = new \PDO("mysql:host=" . $config->database->host . ";dbname=" . $config->getDatabase()->dbname,
                          $config->getDatabase()->dbuser, $config->getDatabase()->dbpasswd);  

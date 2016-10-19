@@ -16,6 +16,7 @@ class Configuration {
 
        self::$database = $config->database;
        self::$files = $config->files;
+
     }
 
     public function getDatabaseParams() : \SimpleXMLElement
@@ -28,24 +29,12 @@ class Configuration {
 	return self::$files;
     }
 
-    protected function setInstance($filename) : Configuration
+    static public function getConfiguration(string $file_name) : Configuraton
     {
+      static $the_configuration = new Configuration($file_name);
 
-       
-    }
-
-    getInstance()
-    {
-      static Configuration;
-
-    protected static function init($filename) : void
-    {
-       static Configuration = new Configuration($filename);
-
-    }
-
-    public static function load($file_name)
-    {
-       self::init($file_name);
+      return $the_configuration;
     }
 }
+
+
