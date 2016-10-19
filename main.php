@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-use Maude\Registry as Registry;
+use Maude\Configuration as Configuration;
 
 require_once("class_loader.php");
 
@@ -19,10 +19,23 @@ function copy_if(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter, 
   }
 }
 
+function copy(\SpileFileObject $file_iter, \DatabaseInsertIterator $db_iter,  lambda/closure)
+{
+  foreach ($file_iter as $vec) {
+
+
+         $db_iter->insert();
+     } 
+
+     $db_iter->next();
+  }
+}
+
+
 try {
     // TODO: Change Registry to use .xml fie and SimpleXML  
 
-   $db_settings = Registry::registry('database');
+   $configuration = Registry::create('config.xml');
    
    $db_handle = new \PDO("mysql:host=localhost;dbname=" . $db_settings['dbname'],
                          $db_settings['dbuser'],

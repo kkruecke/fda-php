@@ -1,14 +1,30 @@
 <?php
-use \Ds\Vector;
 
-$vector = new Vector();
+class X {
 
-$vector->push('a');
-$vector->push('b', 'c');
+  static $instance; // X
+  private $i;
 
-$vector[] = 'd';
+ public function __construct(int $in)
+ {
+     $i = $in;
+ }
 
-print_r($vector);
+ static public function create() : X
+ {
+    if (!isset(self::$instance)) {
+        self::$instance = new X(4);
+    }
 
-?>
+    return self::$instance;
+ }
 
+ public function get_i() : int
+ {
+     return $this->$i;
+ }
+}
+
+$the_x = X::create();
+
+echo "The value of \$the_x->get_i() is ". $the_x->get_i() . "\n";
