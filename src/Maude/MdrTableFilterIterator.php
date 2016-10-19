@@ -1,7 +1,9 @@
 <?php
 namespace Maude;
 
-class TextTableFilterIterator {
+require_once("algorithms.php");
+
+class DeviceTableFilterIterator {
 
      use ExistsInDeviceTableTrait;
 
