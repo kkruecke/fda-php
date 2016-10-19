@@ -9,18 +9,27 @@ boot_strap();
 
 try {
 
-   $config = Configuration::getConfiguration('config.xml');
+   $config = Configuration::getConfiguration('config.temp.xml');
    
-   $db_handle = new \PDO("mysql:host=" . $config->database->host . ";dbname=" . $config->getDatabase()->dbname,
-                         $config->getDatabase()->dbuser, $config->getDatabase()->dbpasswd);  
+   $db = $config->getDatabase();
+   
+   var_dump($db);
+   
+   $db_handle = new \PDO("mysql:host=" . $db->host . ";dbname=" . $db->name,
+                         $db->user, $db->password);  
    
   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
+  
+  $files = $config->getFiles();
+  
+  foreach($files as $file) {
+      
+    // TODO: Fingure out how SimeplXMLElement works esp. for properties.  
+    $file_iterator = new SplFileObjectExtended($file["name"]); // bug
 
-  foreach($config->getFiles() as $file) {
-
-    $filter_iterator = new $file["filter_iter"](new $file["dbinsert_iter"]($pdo));
+    $filter_iterator = new $file["filter_iter"](new $file["dbinsert_iter"]($pdo)); // bug
     
-    $file_iterator = new SplFileObjectExtended($file["name"]);
+    
 
     // Copy filtered file results to database
     foreach ($filterIter as $vector) {

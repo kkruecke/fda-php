@@ -26,7 +26,7 @@ class Configuration {
        self::$files = $config->files;
     }
 
-    public function getDatabaseParams() : \SimpleXMLElement
+    public function getDatabase() : \SimpleXMLElement
     {
 	return self::$database;
     }
