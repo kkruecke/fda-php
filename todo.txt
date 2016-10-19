@@ -1,14 +1,11 @@
+1. Understand remaining SPL iterator classes, like LimitIterator and FilterIterato, and how they are to be used in the functional programming paragdigm.
 
-1. Understand remaining SPL iterator classes and how they are to be used in the functional programming paragdigm.
+2. Remove setUp() method, putting it in Ctors.
 
-2. Change .ini files to .xml file and use SimpleXML to parse.
+3. Model code more after C++ version and copy_if() than prior php version. Make code clear and methods shorter. Add comments to give basic explanation.
 
-3. Possibly remove setUp() method, putting it in Ctors.
+4. Change Registry to read an xml file using SimpleXML
 
-4. Model code after C++ version and copy_if().
+5. Replace any array_search()'es with sort arrays that do binary_search().
 
-5. Change Registry to read an xml file using SimpleXML
-
-6. Understand functional programming with SPL iterators--specifically LimitIterator, FilterIterator, etc--and how to compose or more generally use them.
-
-7. Replace any array_search()'es with sort arrays that do binary_search().
+6. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.

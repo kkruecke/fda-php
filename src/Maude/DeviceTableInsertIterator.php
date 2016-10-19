@@ -24,6 +24,7 @@ class DeviceTableInsertIterator implements AbstractMaudeLasikIterator, \Iterator
 
   protected function assignParameters(\Ds\Vector $vec) : void
   {
+    // TODO: Check the order or use class constant integers: class Sample { private $mdr_key_index = 0; ...
     $this->mdr_report_key = $vec[0];
     $this->device_report_code = $vec[1];
   }
