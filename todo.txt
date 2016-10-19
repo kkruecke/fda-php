@@ -10,3 +10,5 @@
 4. Replace any array_search()'es with sort arrays that do binary_search().
 
 5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
+
+6. Develop the DeviceCustomFileFilterIterator as the ultimate iterator to use--add Mdr and Text  versions.
