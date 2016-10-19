@@ -3,12 +3,14 @@ namespace Maude;
 
 require_once("stdlib/algorithms.php");
 
-class DeviceTableFilterIterator {
+class DeviceTableFilterIterator extends \FilterIterator {
 
      use ExistsInDeviceTableTrait;
 
-     public function __construct(\PDO $pdo)
+     public function __construct(\PDO $pdo, \Iterator $iter)
      {
+          parent::__construct($iter);
+
           do_construct($pdo);
      }
 

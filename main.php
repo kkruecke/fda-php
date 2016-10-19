@@ -13,29 +13,26 @@ try {
    
    $db = $config->getDatabase();
    
-   var_dump($db);
-   
    $db_handle = new \PDO("mysql:host=" . $db->host . ";dbname=" . $db->name,
                          $db->user, $db->password);  
    
-  $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
-  
-  $files = $config->getFiles();
-  
-  foreach($files as $file) {
+   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
+   
+     foreach($config->getFiles()->file as $file) {
       
-    // TODO: Fingure out how SimeplXMLElement works esp. for properties.  
-    $file_iterator = new SplFileObjectExtended($file["name"]); // bug
+     echo $file['name'] . "\n";
+     
+     $fileIter = new SplFileObjectExtended($file['name']); 
 
-    $filter_iterator = new $file["filter_iter"](new $file["dbinsert_iter"]($pdo)); // bug
+     $filter_iterator = new $file['filter_iter']($pdo, $fileIter); 
+         
+     $db_iter = new $file['dbinsert_iter'];    
     
-    
+     // Copy filtered file results to database
+     foreach ($filterIter as $vector) {
 
-    // Copy filtered file results to database
-    foreach ($filterIter as $vector) {
-
-       $db_iter->insert($vector);
-    }
+        $db_iter->insert($vector);
+     }
   }
 
   echo "\nupdateDatabase() complete\n"; // debug

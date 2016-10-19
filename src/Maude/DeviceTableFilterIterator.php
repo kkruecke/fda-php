@@ -4,8 +4,10 @@ class DeviceTableFilterIterator extends \FilterIterator {
      private $max_mdr_report_key;
      private $max_mdr_report_key_index = 0; // TODO: Is 0 correct?
 
-     public function __construct(\PDO $pdo)
+     public function __construct(\PDO $pdo, \Iterator $iter)
      {
+        parent::__construct($iter);
+
         $max_mdr_report_key = $pod->query("SELECT max(mdr_report_key) as max_mdr_report_key FROM foi_device");
 
         $row = $max_mdr_report_key->fetch();

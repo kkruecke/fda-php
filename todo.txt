@@ -1,11 +1,12 @@
-1. Understand remaining SPL iterator classes, like LimitIterator and FilterIterato, and how they are to be used in the functional programming paragdigm.
+1. Understand remaining SPL iterator classes, like LimitIterator and FilterIterator, and how they are to be used in the functional programming paragdigm.
 
-2. Remove setUp() method, putting it in Ctors.
+2. Model code more after C++ version and copy_if() than prior php version. Make code clear and methods shorter. Add comments to give basic explanation.
 
-3. Model code more after C++ version and copy_if() than prior php version. Make code clear and methods shorter. Add comments to give basic explanation.
+3. Add code to take string output returned from SplFileObjectExtended::current and run regex_xxx against it to put results in \Ds\Vector. Consider creating a 
+   RegexIterator to do, if it is appropo.
 
-4. Change Registry to read an xml file using SimpleXML
+3. Change Registry to read an xml file using SimpleXML
 
-5. Replace any array_search()'es with sort arrays that do binary_search().
+4. Replace any array_search()'es with sort arrays that do binary_search().
 
-6. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
+5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.

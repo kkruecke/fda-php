@@ -16,8 +16,7 @@ class SplFileObjectExtended extends \SplFileObject   {
 
     public functon current() : string
     {
-      // TODO: Implement
-
+      return parent::current(); 
     }
 
     public function rewind() : void 

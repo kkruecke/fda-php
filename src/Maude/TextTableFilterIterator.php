@@ -1,12 +1,14 @@
 <?php
 namespace Maude;
 
-class TextTableFilterIterator  implements AbstractMaudeLasikIterator, \Iterator {
+class TextTableFilterIterator  implements \FilterIterator {
 
      use ExistsInDeviceTableTrait;
 
-     public function __construct(\PDO $pdo)
+     public function __construct(\PDO $pdo, \Iterator $iter)
      {
+          parent::__construct($iter);
+
           do_construct($pdo);
      }
 
