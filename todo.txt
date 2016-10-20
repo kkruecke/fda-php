@@ -11,4 +11,12 @@
 
 5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
 
-6. Develop the DeviceCustomFileFilterIterator as the ultimate iterator to use--add Mdr and Text  versions.
+6. Develop the MaudeFieldExtractorFileFilterIterator as the ultimate iterator to use--add Mdr and Text  versions.
+Note: ourt iterator may need to loop, calling next(), until a valid new lasik record is found.
+
+    $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
+    
+    $filter_iterator = new DeviceTableFilterIterator($pdo, $spl_file_object_extended);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
+    
+    $regexIter = MaudeFieldExtractorIterator($iter, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES)
+
