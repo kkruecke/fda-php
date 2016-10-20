@@ -1,7 +1,12 @@
 <?php
-use Maude\{Configuration as Configuration, SplFileObjectExtended as SplFileObjectExtended, DeviceTableFilterIterator as  DeviceTableFilterIterator,
-DeviceTableInsertIterator as DeviceTableInsertIterator, MdrTableFilterIterator as  MdrTableFilterIterator, MdrTableInsertIterator as MdrTableInsertIteratpr, 
-TextTableFilterIterator as  TextTableFilterIterator, TextTableInsertIterator as TextTableInsertIterator}; 
+use Maude\{Configuration as Configuration,
+ SplFileObjectExtended as SplFileObjectExtended,
+ DeviceTableFilterIterator as  DeviceTableFilterIterator,
+ DeviceTableInsertIterator as DeviceTableInsertIterator,
+ MdrTableFilterIterator as  MdrTableFilterIterator,
+ MdrTableInsertIterator as MdrTableInsertIteratpr, 
+ TextTableFilterIterator as  TextTableFilterIterator,
+ TextTableInsertIterator as TextTableInsertIterator}; 
 
 require_once("class_loader.php");
 
@@ -9,7 +14,7 @@ boot_strap();
 
 try {
 
-   $config = Configuration::getConfiguration('config.temp.xml');
+   $config = Configuration::getConfiguration('config.xml');
    
    $db = $config->getDatabase();
    
@@ -20,9 +25,9 @@ try {
    
    foreach($config->getFiles()->file as $file) {
        
-      $fileIter = new SplFileObjectExtended($file['name']); 
+      $splFileObj = new SplFileObjectExtended($file['name']); 
   
-      $filter_iterator = new $file['filter_iter']($pdo, $fileIter); 
+      $filter_iterator = new $file['filter_iter']($pdo, $splFileObj); 
           
       $db_iter = new $file['dbinsert_iter'];    
       
