@@ -1,19 +1,21 @@
 <?php
 namespace Maude;
 
-// Abstract base file class to be used by Device, Mdr and Text filter iterators that implement the is_new_record(\Ds\Vector) method.
+// Basic MaudeFilterIterator that is configured by functions derived from Functor interface 
 
-abstract class MaudeFilterIterator extends FilterIterator {
+class MaudeFilterIterator extends \FilterIterator {
 
-    public function __construct(\Iterator $iterator)
+    $this->functor; 
+
+    public function __construct(\RegexIterator $iterator, Functor $functor, array $indices)
     {
         parent::construct($iterator);
+        $this->functor = $functor;
     } 
 
     public function accept() : bool
     {
-       return is_new_record($this->current());
+       return $this->functor($this->current());
     }
-
-    abstract protected function is_new_record(\Ds\Vector $vec) : bool; 
 }
+

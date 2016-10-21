@@ -41,10 +41,13 @@ try {
 
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
       
-      $extractorIterator = MaudeFieldExtractorIterator($spl_file_object_extended, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
+      $regexIterator = RegexIterator($spl_file_object_extended, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
+
+      $extractorIterator = MaudeFilterIterator($regexIterator, $functor, $indecies);
   
-      $filter_iterator = new DeviceTableFilterIterator($pdo, $extractorIterator);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
-  
+      // TODO: We need MaudeFilterIterator to return an array (initially created within the regexIterator) of only the selected columns specified by $indecies
+      // Furthermore, they need to be Filtered by the appropriate Functor.
+
       foreach ($file_iterator => $vec) {
       
          $dbIterator->insert($vec);

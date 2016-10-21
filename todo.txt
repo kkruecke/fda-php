@@ -1,32 +1,7 @@
 1. Understand remaining SPL iterator classes, like LimitIterator and FilterIterator, and how they are to be used in the functional programming paragdigm.
 
-2. Model code more after C++ version and copy_if() than prior php version. Make code clear and methods shorter. Add comments to give basic explanation.
+2.  See comments in main.php and new the MaudeFilterIterator and Functor classes.
 
-3. Add code to take string output returned from SplFileObjectExtended::current and run regex_xxx against it to put results in \Ds\Vector. Consider creating a 
-   RegexIterator to do, if it is appropo.
+3. Replace any array_search()'es with sort arrays that do binary_search().
 
-3. Change Registry to read an xml file using SimpleXML
-
-4. Replace any array_search()'es with sort arrays that do binary_search().
-
-5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
-
-6. Develop the MaudeFieldExtractorFileFilterIterator as the ultimate iterator to use--add Mdr and Text  versions.
-Note: ourt iterator may need to loop, calling next(), until a valid new lasik record is found.
-
-foreach($config->getFiles()->file as $file) {
-
-
-    $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
-    
-    $extractorIterator = MaudeFieldExtractorIterator($spl_file_object_extended, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
-
-    $filter_iterator = new DeviceTableFilterIterator($pdo, $extractorIterator);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
-
-    foreach ($file_iterator => $vec) {
-    
-       $dbIterator->insert($vec);
-    }
-
-}
-
+4. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.

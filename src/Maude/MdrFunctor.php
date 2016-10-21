@@ -1,7 +1,9 @@
 <?php
 namespace Maude;
 
-class TextTableFilterIterator  implements \FilterIterator {
+require_once("stdlib/algorithms.php");
+
+class DeviceFunctor extends Functor {
 
      use ExistsInDeviceTableTrait;
 

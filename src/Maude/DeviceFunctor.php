@@ -1,10 +1,11 @@
 <?php
-class DeviceTableFilterIterator extends \FilterIterator {
+namespace Maude;
+class DeviceFunctor extends Functor {
 
      private $max_mdr_report_key;
      private $max_mdr_report_key_index = 0; // TODO: Is 0 correct?
 
-     public function __construct(\PDO $pdo, \Iterator $iter)
+     public function __construct(\PDO $pdo) 
      {
         parent::__construct($iter);
 
@@ -15,9 +16,9 @@ class DeviceTableFilterIterator extends \FilterIterator {
         $this->max_mdr_report_key = $row['max_mdr_report_key']; 
      }
 
-     protected function is_new_record(\Ds\Vector $vec) : bool
+     protected function __invoke(int $mdr_report_key $vec) : bool
      {
-         return $vec[$this->mdr_report_key_index] > $max_mdr_report_key ? true : false; 
+         return //$vec[$this->mdr_report_key_index] > $max_mdr_report_key ? true : false; 
      }
 
 }

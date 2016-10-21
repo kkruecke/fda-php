@@ -1,9 +1,7 @@
 <?php
 namespace Maude;
 
-require_once("stdlib/algorithms.php");
-
-class DeviceTableFilterIterator extends \FilterIterator {
+class TextTableFilterIterator  implements Functor {
 
      use ExistsInDeviceTableTrait;
 
@@ -14,7 +12,7 @@ class DeviceTableFilterIterator extends \FilterIterator {
           do_construct($pdo);
      }
 
-     protected function is_new_record(\Ds\Vector $vec) : bool
+     protected function __invoke(\Ds\Vector $vec) : bool
      {
          return do_is_new_record($vec); 
      }
