@@ -11,11 +11,11 @@ class DeviceFunctor extends Functor {
      {
           parent::__construct($iter);
 
-          do_construct($pdo);
+          construct($pdo);
      }
 
-     protected function is_new_record(\Ds\Vector $vec) : bool
+     protected function __invoke(int $mdr_report_key) : bool
      {
-         return do_is_new_record($vec); 
+         return is_new_record($mdr_report_key); 
      }
 }

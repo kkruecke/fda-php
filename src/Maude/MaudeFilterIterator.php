@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-// Basic MaudeFilterIterator that is configured by functions derived from Functor interface 
+// MaudeFilterIterator that is configured by functions derived from Functor interface 
 
 class MaudeFilterIterator extends \FilterIterator {
 

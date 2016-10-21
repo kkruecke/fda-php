@@ -9,11 +9,11 @@ class TextTableFilterIterator  implements Functor {
      {
           parent::__construct($iter);
 
-          do_construct($pdo);
+          construct($pdo);
      }
 
-     protected function __invoke(\Ds\Vector $vec) : bool
+     protected function __invoke(int $mdr_report_key) : bool
      {
-         return do_is_new_record($vec); 
+         return do_is_new_record($mdr_report_key); 
      }
 }

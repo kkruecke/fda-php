@@ -9,7 +9,7 @@ trait ExistsinDeviceTableTrait {
 
      \Ds\Vector $sorted_vec_dev_mdr_report_keys;
 
-     public function do_construct(\PDO $pdo)
+     public function construct(\PDO $pdo)
      {
         $max_stmt = $pdo->query("SELECT mdr_report_key as max_mdr_report_key FROM foi_device ORDER BY ASC");
 
@@ -19,8 +19,8 @@ trait ExistsinDeviceTableTrait {
         }
      }
 
-     protected function do_is_new_record(\Ds\Vector $vec) : bool
+     protected function is_new_record(int $mdr_report_key) : bool
      {
-         return binary_search($vec[$this->mdr_report_key_index], $this->sorted_vec_dev_mdr_report_keys);
+         return binary_search($mdr_report_key_index, $this->sorted_vec_dev_mdr_report_keys);
      }
 }

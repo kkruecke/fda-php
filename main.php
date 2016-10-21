@@ -45,9 +45,6 @@ try {
 
       $extractorIterator = MaudeFilterIterator($regexIterator, $functor, $indecies);
   
-      // TODO: We need MaudeFilterIterator to return an array (initially created within the regexIterator) of only the selected columns specified by $indecies
-      // Furthermore, they need to be Filtered by the appropriate Functor.
-
       foreach ($file_iterator => $vec) {
       
          $dbIterator->insert($vec);
