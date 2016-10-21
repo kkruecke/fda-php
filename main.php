@@ -24,7 +24,8 @@ try {
    $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
    
    foreach($config->getFiles()->file as $file) {
-       
+
+    /*   
       $splFileObj = new SplFileObjectExtended($file['name']); 
   
       $filter_iterator = new $file['filter_iter']($pdo, $splFileObj); 
@@ -36,6 +37,19 @@ try {
   
           $db_iter->insert($vector);
       }
+    */
+
+      $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
+      
+      $extractorIterator = MaudeFieldExtractorIterator($spl_file_object_extended, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
+  
+      $filter_iterator = new DeviceTableFilterIterator($pdo, $extractorIterator);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
+  
+      foreach ($file_iterator => $vec) {
+      
+         $dbIterator->insert($vec);
+      }
+
   }
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.

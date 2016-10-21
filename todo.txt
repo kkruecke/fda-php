@@ -19,13 +19,11 @@ foreach($config->getFiles()->file as $file) {
 
     $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
     
-    $filter_iterator = new DeviceTableFilterIterator($pdo, $spl_file_object_extended);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
-    
-    $extractor = MaudeFieldExtractorIterator($iter, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
+    $extractorIterator = MaudeFieldExtractorIterator($spl_file_object_extended, array $fieldIndecies, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
 
-    $dbIter = ...
+    $filter_iterator = new DeviceTableFilterIterator($pdo, $extractorIterator);  // <--- Filtering is based on the regex and extraction and finding a new record--right?
 
-    foreach ($extractor => $vec) {
+    foreach ($file_iterator => $vec) {
     
        $dbIterator->insert($vec);
     }
