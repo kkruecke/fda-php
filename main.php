@@ -25,25 +25,11 @@ try {
    
    foreach($config->getFiles()->file as $file) {
 
-    /*   
-      $splFileObj = new SplFileObjectExtended($file['name']); 
-  
-      $filter_iterator = new $file['filter_iter']($pdo, $splFileObj); 
-          
-      $db_iter = new $file['dbinsert_iter'];    
-      
-      // Copy filtered file results to database using database iterator.
-      foreach ($filterIter as $vector) {
-  
-          $db_iter->insert($vector);
-      }
-    */
-
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
-      
-      $regexIterator = RegexIterator($spl_file_object_extended, "[^|]*(\||$)" , RegexIterator::ALL_MATCHES);
 
-      $extractorIterator = MaudeFilterIterator($regexIterator, $functor, $indecies);
+      $regexIterator = new \RegexIterator($spl_file_object_extended, '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
+
+      $extractorIterator = new MaudeFilterIterator($regexIterator, $functor, $indecies);
   
       foreach ($file_iterator => $vec) {
       

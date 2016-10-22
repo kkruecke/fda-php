@@ -1,4 +1,4 @@
-<?<?php
+<?php
 namespace Maude;
  
 class SplFileObjectExtended extends \SplFileObject   { 
@@ -14,7 +14,7 @@ class SplFileObjectExtended extends \SplFileObject   {
        $this->line_no = 1;
     }
 
-    public functon current() : string
+    public function current() : string
     {
       return parent::current(); 
     }
