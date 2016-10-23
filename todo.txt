@@ -1,7 +1,5 @@
-1. Understand remaining SPL iterator classes, like LimitIterator and FilterIterator, and how they are to be used in the functional programming paragdigm.
-
-2.  See comments in main.php and new the MaudeFilterIterator and Functor classes.
-
-3. Replace any array_search()'es with sort arrays that do binary_search().
-
-4. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
+1. Are all the functor classes the same. If so, I only need one. 
+2. Do I want or need to specify this one functor class in the .xml?
+3. How do I specifiy the indcies in the config.xml?
+4. Some of the XXXTableInsertIterators don't derive from teh same common base. I think this is an oversight to be corected.
+5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.

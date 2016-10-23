@@ -3,6 +3,7 @@ namespace Maude;
 class DeviceFunctor extends Functor {
 
      use ExistsinDeviceTableTrait;
+
      public function __construct(\PDO $pdo) 
      {
         parent::__construct($iter);

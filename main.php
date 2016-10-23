@@ -29,13 +29,14 @@ try {
 
       $maudeFieldExtractor  = new MaudeFieldExtractorIterator($spl_file_object_extended, $file['indecies']); 
 
+      $functor = new    
+
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
   
-      foreach ($filterIterator => $vec) {
+      foreach ($filterIterator as $vec) {
       
          $dbIterator->insert($vec);
       }
-
   }
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.
