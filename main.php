@@ -22,7 +22,7 @@ function getIndecies(\SimpleXMLElement $file) : \Ds\Vector
    
    foreach($indecies->index as $index) {
 
-      $vec->push($index);
+      $vec->push((int) $index);
    }
 
    return $vec;
@@ -43,9 +43,9 @@ try {
 
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $vec = getIndecies($file);
+      $indecies = getIndecies($file);
 
-      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $file['indecies']); 
+      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
 
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new MaudeLasikFunctor($pdo));
   

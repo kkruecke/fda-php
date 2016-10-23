@@ -33,7 +33,7 @@ class Configuration {
 
     public function getFiles() : \SimpleXMLElement
     {
-	return self::$files;
+        return self::$files;
     }
 
     public static function getConfiguration(string $file_name="") : Configuration

@@ -6,7 +6,7 @@ class MaudeRegexIterator extends \RegexIterator {
     private $vector; 
     private $indecies;
 
-    public function __construct(\Maude\SplFileObjectExtended $spl_file_object_ex, array $indices)
+    public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indices)
     {
         parent::__construct($spl_file_object_ex,  '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
 
@@ -23,9 +23,9 @@ class MaudeRegexIterator extends \RegexIterator {
 
       $i = 0; 
 
-      for ($this->indecies as $index) {
+      foreach ($this->indecies as $indx) {
 
-          $this->vector[i++] = $a[$index];
+          $this->vector[$i++] = $a[$indx];
       }
 
       return $this->vector;
