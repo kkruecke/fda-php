@@ -8,10 +8,27 @@
 </database>
 <files>
     <file name="data/foidev.txt" filter_iter="DeviceTableFilterIterator" dbinsert_iter="DeviceTableInsertIterator">
+    <indecies>
+        <index>0</index>
+        <index>4</index>
+        <index>25</index>
+    </indecies>
     </file>
     <file name="data/mdrfoi.txt"  filter_iter="MdrTableFilterIterator" dbinsert_iter="MdrTableInsertIterator">
+    <indecies>
+        <index>0</index>
+        <index>3</index>
+        <index>7</index>
+    </indecies>
     </file>
     <file name="data/foitext.txt"  filter_iter="TextTableFilterIterator" dbinsert_iter="TextTableInsertIterator">
+    <indecies>
+        <index>0</index>
+        <index>1</index>
+        <index>2</index>
+	<index>3</index>
+        <index>5</index>
+    </indecies>
     </file>
 </files>
 </configuration>

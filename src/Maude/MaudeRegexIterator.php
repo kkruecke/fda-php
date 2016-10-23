@@ -3,8 +3,8 @@ namespace Maude;
 
 class MaudeRegexIterator extends \RegexIterator {
 
-    $this->vector; 
-    $this->indecies;
+    private $vector; 
+    private $indecies;
 
     public function __construct(\Maude\SplFileObjectExtended $spl_file_object_ex, array $indices)
     {

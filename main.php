@@ -6,13 +6,27 @@ use Maude\{Configuration as Configuration,
  MdrTableFilterIterator as  MdrTableFilterIterator,
  MdrTableInsertIterator as MdrTableInsertIteratpr, 
  TextTableFilterIterator as  TextTableFilterIterator,
- TextTableInsertIterator as TextTableInsertIterator
+ TextTableInsertIterator as TextTableInsertIterator,
  MaudeRegexIterator as MaudeRegexIterator, 
  MaudeLasikFunctor as MaudeLasikFunctor}; 
 
 require_once("class_loader.php");
 
 boot_strap();
+
+function getIndecies(\SimpleXMLElement $file) : \Ds\Vector 
+{
+   $vec = new \Ds\Vector;
+
+   $indecies =  $file->indecies;
+   
+   foreach($indecies->index as $index) {
+
+      $vec->push($index);
+   }
+
+   return $vec;
+}
 
 try {
 
@@ -28,6 +42,8 @@ try {
    foreach($config->getFiles()->file as $file) {
 
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
+
+      $vec = getIndecies($file);
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $file['indecies']); 
 
