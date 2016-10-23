@@ -1,5 +1,6 @@
 <?php
 namespace Maude;
+use FilterIterator;
 
 // MaudeFilterIterator that is configured by functions derived from Functor interface 
 

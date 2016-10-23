@@ -1,18 +1,19 @@
 <?php
 namespace Maude;
+use \RegexIterator;
 
 class MaudeRegexIterator extends \RegexIterator {
 
     private $vector; 
     private $indecies;
 
-    public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indices)
+    public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indecies)
     {
         parent::__construct($spl_file_object_ex,  '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
 
         $this->vector = new \Ds\Vector;  
 
-        $this->vector.capacity(count($indecies));
+        $this->vector->allocate(\count($indecies));
 
         $this->indecies = $indecies;
     } 

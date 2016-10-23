@@ -1,5 +1,6 @@
 <?php
 namespace Maude;
+use Iterator;
 
 class DeviceTableInsertIterator implements AbstractMaudeLasikIterator, \Iterator {
 
