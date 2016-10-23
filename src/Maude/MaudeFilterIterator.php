@@ -7,7 +7,7 @@ class MaudeFilterIterator extends \FilterIterator {
 
     $this->functor; 
 
-    public function __construct(\RegexIterator $iterator, Functor $functor, array $indices)
+    public function __construct(\RegexIterator $iterator, Functor $functor)
     {
         parent::construct($iterator);
         $this->functor = $functor;

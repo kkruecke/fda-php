@@ -27,11 +27,11 @@ try {
 
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $regexIterator = new \RegexIterator($spl_file_object_extended, '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
+      $maudeFieldExtractor  = new MaudeFieldExtractorIterator($spl_file_object_extended, $file['indecies']); 
 
-      $extractorIterator = new MaudeFilterIterator($regexIterator, $functor, $indecies);
+      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
   
-      foreach ($file_iterator => $vec) {
+      foreach ($filterIterator => $vec) {
       
          $dbIterator->insert($vec);
       }

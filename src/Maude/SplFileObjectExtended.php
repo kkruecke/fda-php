@@ -19,10 +19,11 @@ class SplFileObjectExtended extends \SplFileObject   {
       return parent::current(); 
     }
 
-    public function rewind() : void 
+    public function rewind() 
     {
         parent::rewind();
         $this->line_no = 1;
+        return;
     }
 
     public function key() : int  
@@ -30,7 +31,7 @@ class SplFileObjectExtended extends \SplFileObject   {
         return $this->line_no;
     }
 
-    public function next() : void 
+    public function next() 
     {
         parent::next();
 
@@ -38,5 +39,7 @@ class SplFileObjectExtended extends \SplFileObject   {
 
             ++$this->line_no; 
         }
+        
+        return;
     }
 }

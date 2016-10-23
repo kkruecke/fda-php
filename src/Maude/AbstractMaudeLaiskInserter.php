@@ -11,9 +11,9 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
   private \PDOStatement $stmt;
   private $rc;
 
-  abstract protected function bindParameters(\PDOStatement $stmt) : void;   // not implemented
+  abstract protected function bindParameters(\PDOStatement $stmt);   // not implemented
 
-  abstract protected function assignParameters(\Ds\Vector $vec) : void;     // not implemented
+  abstract protected function assignParameters(\Ds\Vector $vec);     // not implemented
 
   /*
    * The ctor is a "template method" pattern that invokes the bindParameters, which derived classes must override
@@ -35,7 +35,7 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
        bindParameters($this->stmt);
   }
 
-  public function next() : void 
+  public function next() 
   {
   }
    
@@ -57,7 +57,7 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
    * insert() is a "template method" pattern that invokes the assignParameters, which derived classes must override to assign the parameters for the 
    * prepared statement. 
    */
-  public function insert(\Ds\Vector $vec) : void
+  public function insert(\Ds\Vector $vec)
   {
        assignParameters($vec);       
     

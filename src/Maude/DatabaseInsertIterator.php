@@ -3,5 +3,5 @@ namespace Maude;
 
 interface DatabaseInserter  {
 
-   pubic function insert(\Ds\Vector $vec) : void {}
+   pubic function insert(\Ds\Vector $vec);
 }

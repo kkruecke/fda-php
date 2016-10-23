@@ -20,13 +20,13 @@ class MdrTableInsertIterator implements AbstractMaudeLasikIterator, \Iterator {
       $this->insert_stmt->bindParam(':device_product_code', $this->device_product_code, \PDO::PARAM_STR);
    }
 
-  protected function assignParameters(\Ds\Vector $vec) : void
+  protected function assignParameters(\Ds\Vector $vec) 
   {
     $this->mdr_report_key = $vec[0];
     $this->device_product_cod e= $vec[1];
   }
 
-  public function insert(\Ds\Vector $vec) : void;
+  public function insert(\Ds\Vector $vec) {} 
 
 }
 ?>
