@@ -8,6 +8,7 @@ use Maude\{Configuration as Configuration,
  TextTableFilterIterator as  TextTableFilterIterator,
  TextTableInsertIterator as TextTableInsertIterator,
  MaudeRegexIterator as MaudeRegexIterator, 
+ MaudeFilterIterator as MaudeFilterIterator,
  MaudeLasikFunctor as MaudeLasikFunctor}; 
 
 require_once("class_loader.php");
@@ -46,8 +47,10 @@ try {
       $indecies = getIndecies($file);
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
-
-      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new MaudeLasikFunctor($pdo));
+      
+      $functor = new MaudeLasikFunctor($pdo);
+      
+      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
   
       foreach ($filterIterator as $vec) {
       

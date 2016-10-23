@@ -13,4 +13,6 @@ function boot_strap()
 
  $spl_loader2->register();
 
+ // TODO: Set ini to include the current directory?
+
 }

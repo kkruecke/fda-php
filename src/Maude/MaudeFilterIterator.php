@@ -4,11 +4,11 @@ use FilterIterator;
 
 // MaudeFilterIterator that is configured by functions derived from Functor interface 
 
-class MaudeFilterIterator implements \FilterIterator {
+class MaudeFilterIterator extends FilterIterator {
 
-    $this->functor; 
+    private $functor; 
 
-    public function __construct(MaudeFieldExtractorIterator $iterator, Functor $functor)
+    public function __construct(MaudeRegexIterator $iterator, Functor $functor)
     {
         parent::construct($iterator);
         $this->functor = $functor;
