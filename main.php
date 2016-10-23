@@ -29,9 +29,7 @@ try {
 
       $maudeFieldExtractor  = new MaudeFieldExtractorIterator($spl_file_object_extended, $file['indecies']); 
 
-      $functor = new    
-
-      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
+      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new XXXFunctor);
   
       foreach ($filterIterator as $vec) {
       
