@@ -1,5 +1,7 @@
 1. Are all the functor classes the same. If so, I only need one. 
 2. Do I want or need to specify this one functor class in the .xml?
 3. How do I specifiy the indcies in the config.xml?
-4. Some of the XXXTableInsertIterators don't derive from teh same common base. I think this is an oversight to be corected.
-5. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
+4. Some of the XXXTableInsertIterators don't derive from the same common base. I think this is an oversight to be corected.
+5. I created MaudeLasikFunctor since all the Mdr-, Device- and Text-Functors were identical, all using the same Trait that did all the work. That Trait is now
+   MaudeLasikFunctor.
+6. Incorporate the update_medwatch logic, now in a separate .php file, into main.php.
