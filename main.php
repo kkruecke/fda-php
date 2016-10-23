@@ -6,7 +6,8 @@ use Maude\{Configuration as Configuration,
  MdrTableFilterIterator as  MdrTableFilterIterator,
  MdrTableInsertIterator as MdrTableInsertIteratpr, 
  TextTableFilterIterator as  TextTableFilterIterator,
- TextTableInsertIterator as TextTableInsertIterator}; 
+ TextTableInsertIterator as TextTableInsertIterator
+ MaudeRegexIterator as MaudeRegexIterator}; 
 
 require_once("class_loader.php");
 
@@ -27,7 +28,7 @@ try {
 
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $maudeFieldExtractor  = new MaudeFieldExtractorIterator($spl_file_object_extended, $file['indecies']); 
+      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $file['indecies']); 
 
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new XXXFunctor);
   

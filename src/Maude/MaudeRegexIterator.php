@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class MaudeFieldExtratorIterator extends \RegexIterator {
+class MaudeRegexIterator extends \RegexIterator {
 
     $this->vector; 
     $this->indecies;
