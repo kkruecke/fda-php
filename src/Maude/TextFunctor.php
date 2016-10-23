@@ -14,6 +14,6 @@ class TextTableFilterIterator  implements Functor {
 
      protected function __invoke(int $mdr_report_key) : bool
      {
-         return do_is_new_record($mdr_report_key); 
+         return is_new_record($mdr_report_key); 
      }
 }
