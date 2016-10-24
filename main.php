@@ -51,6 +51,8 @@ try {
       $functor = new MaudeLasikFunctor($pdo);
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
+
+      $dbIterator = new $file['dbinsert_iter'];
   
       foreach ($filterIterator as $vec) {
       
