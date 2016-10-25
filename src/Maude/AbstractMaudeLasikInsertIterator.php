@@ -11,6 +11,7 @@ abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIte
   private $pdo;
   private $stmt;
   private $valid;
+  private $lines_inserted;
 
   abstract protected function bindParameters(\PDOStatement $stmt);   // derived classes must implemented this method
 
@@ -34,7 +35,14 @@ abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIte
        $this->bindParameters($this->stmt);
        
        $this->valid = true;
+       $this->lines_inserted = 0;
   }
+
+  public function getInsertCount() : int
+  {
+       return $this->lines_inserted;
+  } 
+
   
   public function current() : PDOStatement
   {
@@ -70,6 +78,11 @@ abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIte
        $this->assignParameters($vec);       
     
        $this->valid = $this->stmt->execute();
+
+       if ($this->valid) {
+
+          $this->lines_inserted++;
+       } 
        
        return $this->valid;
               
