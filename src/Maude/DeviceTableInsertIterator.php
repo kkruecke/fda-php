@@ -6,12 +6,13 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   private $mdr_report_key;
   private $device_product_code;
+  private $device_report_code;
 
   private $rc;
 
   public function __construct(\PDO $pdo_in) 
   {
-      parent::__construct($pdo_in, "INSERT INTO foi_device(mdr_report_key, device_product_code) values
+      parent::__construct($pdo_in, "INSERT INTO devicefoi(mdr_report_key, device_product_code) values
 	      (:mdr_report_key, :device_product_code )"); 
   }
 
@@ -28,8 +29,9 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
   protected function assignParameters(\Ds\Vector $vec) 
   {
     // TODO: Check the order or use class constant integers: class Sample { private $mdr_key_index = 0; ...
-    $this->mdr_report_key = $vec[0];
+    $this->mdr_report_key = (int) $vec[0];
     $this->device_report_code = $vec[1];
+    $this->device_product_code =$vec[2];
 
     return;
   }

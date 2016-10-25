@@ -26,9 +26,9 @@ class MaudeRegexIterator extends \RegexIterator {
       
       $i = 0; 
 
-      foreach ($this->indecies as $indx) {
+      foreach ($this->indecies as $index) {
                    
-          $this->vector->push( $array[1][$indx] );
+          $this->vector->push( $array[1][$index] );
       }
 
       return $this->vector;

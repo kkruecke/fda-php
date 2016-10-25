@@ -9,7 +9,7 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
    public function __construct(\PDO $pdo)
    {
-       parent::__construct($pdo, "INSERT INTO foi_device(mdr_report_key, device_product_code) values
+       parent::__construct($pdo, "INSERT INTO devicefoi(mdr_report_key, device_product_code) values
 	      (:mdr_report_key, :device_product_code )");
    }
 

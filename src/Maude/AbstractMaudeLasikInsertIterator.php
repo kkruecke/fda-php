@@ -67,7 +67,7 @@ abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIte
    */
   public function insert(\Ds\Vector $vec) : bool
   {
-       assignParameters($vec);       
+       $this->assignParameters($vec);       
     
        $this->valid = $this->stmt->execute();
        
