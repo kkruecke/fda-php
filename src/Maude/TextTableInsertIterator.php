@@ -2,7 +2,7 @@
 namespace Maude;
 use Iterator;
 
-class TextTableInsertIterator implements DatabaseInsertIterator, \Iterator {
+class TextTableInsertIterator extends DatabaseInsertIterator {
 
   private $mdr_report_key;
   private $text_report;

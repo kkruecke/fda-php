@@ -1,16 +1,11 @@
 <?php
-use Maude\{Configuration as Configuration,
-ExistsInDeviceFunctor as ExistsInDeviceFunctor,
-SplFileObjectExtended as SplFileObjectExtended,
-DeviceTableFilterIterator as  DeviceTableFilterIterator,
-DeviceTableInsertIterator as DeviceTableInsertIterator,
-MdrTableFilterIterator as  MdrTableFilterIterator,
-MdrTableInsertIterator as MdrTableInsertIteratpr,
-TextTableFilterIterator as  TextTableFilterIterator,
-TextTableInsertIterator as TextTableInsertIterator,
-MaudeRegexIterator as MaudeRegexIterator,
-MaudeFilterIterator as MaudeFilterIterator};
- 
+use Maude\DeviceTableInsertIterator as DeviceTableInsertIterator,
+Maude\Configuration as Configuration,
+Maude\GreaterThanFunctor as GreaterThanFunctor,
+Maude\FilterIterator as MaudeFilterIterator;
+
+
+
 require_once("class_loader.php");
 
 boot_strap();
@@ -39,29 +34,26 @@ try {
                          $db->user, $db->password);  
    
    $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
+
+   $x = new GreaterThanFunctor($pdo);
     
    foreach($config->getFiles()->file as $file) {
        
-      $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
-
-      $indecies = getFileIndecies($file);
-
-      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
+       $dbiter = (string) $file['dbinsert_iter'];
+       
+      $a = new \Maude\DeviceTableInsertIterator($pdo);    
       
+      $functor = new $dbiter();
+       
       $functorName = (string) $file['functor'];
       
-      $dbIteratorName  = (string) $file['dbinsert_iter'];;
-          
-      $functor = new $functorName($pdo);
+      $functor = new $functorName;
+      
+      $functor2 = new $functorName($pdo);
+      
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
-            
-      $dbIterator = new $dbIteratorName;
   
-      foreach ($filterIterator as $vec) {
-      
-         $dbIterator->insert($vec);
-      }
   }
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.

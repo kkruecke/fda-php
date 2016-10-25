@@ -6,16 +6,16 @@ class ExistsinDeviceTableFunctor implements Functor {
 
      \Ds\Vector $sorted_vector;
 
-     public function construct(\PDO $pdo)
+     public function __construct(\PDO $pdo)
      {
-        $count_stmt = $pdo->query("SELECT count(*) FROM foi_device");
+        $count_stmt = $pdo->query("SELECT count(*) FROM devicefoi");
 
         $size = $count_stmt->fetchColumn(); 
 
         $this->sorted_vector = new \Ds\Vector();
         $this->sorted_vector->allocate($size);
 
-        $max_stmt = $pdo->query("SELECT mdr_report_key as max_mdr_report_key FROM foi_device ORDER BY ASC");
+        $max_stmt = $pdo->query("SELECT mdr_report_key as max_mdr_report_key FROM devicefoi ORDER BY ASC");
         
         while ($max_stmt => $key) {
 
@@ -23,7 +23,7 @@ class ExistsinDeviceTableFunctor implements Functor {
         }
      }
 
-     protected function is_new_record(int $mdr_report_key) : bool
+     public function __invoke(int $mdr_report_key) : bool
      {
          return binary_search($mdr_report_key_index, $this->sorted_vector);
      }
