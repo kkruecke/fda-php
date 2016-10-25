@@ -9,7 +9,8 @@ use Maude\{Configuration as Configuration,
  TextTableInsertIterator as TextTableInsertIterator,
  MaudeRegexIterator as MaudeRegexIterator, 
  MaudeFilterIterator as MaudeFilterIterator,
- MaudeLasikFunctor as MaudeLasikFunctor}; 
+ GreaterThanFunctor as GreaterThanFunctor,  
+ ExistsInDeviceFunctor as ExistsInDeviceFunctor}; 
 
 require_once("class_loader.php");
 
@@ -35,10 +36,10 @@ try {
    
    $db = $config->getDatabase();
    
-   $db_handle = new \PDO("mysql:host=" . $db->host . ";dbname=" . $db->name,
+   $pdo = new \PDO("mysql:host=" . $db->host . ";dbname=" . $db->name,
                          $db->user, $db->password);  
    
-   $db_handle->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
+   $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
    
    foreach($config->getFiles()->file as $file) {
 
@@ -48,7 +49,7 @@ try {
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
-      $functor = new MaudeLasikFunctor($pdo);
+      $functor = new $file['functor']($pdo);
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
 
