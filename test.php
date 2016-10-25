@@ -1,11 +1,17 @@
 <?php
-use Maude\DeviceTableInsertIterator as DeviceTableInsertIterator,
-Maude\Configuration as Configuration,
-Maude\GreaterThanFunctor as GreaterThanFunctor,
-Maude\FilterIterator as MaudeFilterIterator;
-
-
-
+use Maude\Configuration,
+Maude\ExistsInDeviceFunctor,
+Maude\GreaterThanFunctor as XYZ,
+Maude\SplFileObjectExtended,
+Maude\DeviceTableFilterIterator,
+Maude\DeviceTableInsertIterator,
+Maude\MdrTableFilterIterator,
+Maude\MdrTableInsertIterator,
+Maude\TextTableFilterIterator,
+Maude\TextTableInsertIterator,
+Maude\MaudeRegexIterator,
+Maude\MaudeFilterIterator;
+ 
 require_once("class_loader.php");
 
 boot_strap();
@@ -34,25 +40,13 @@ try {
                          $db->user, $db->password);  
    
    $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
-
-   $x = new GreaterThanFunctor($pdo);
+   
+   $y = "XYZ";
+   
+   $y2 = new $y($pdo);
     
    foreach($config->getFiles()->file as $file) {
        
-       $dbiter = (string) $file['dbinsert_iter'];
-       
-      $a = new \Maude\DeviceTableInsertIterator($pdo);    
-      
-      $functor = new $dbiter();
-       
-      $functorName = (string) $file['functor'];
-      
-      $functor = new $functorName;
-      
-      $functor2 = new $functorName($pdo);
-      
-      
-      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
   
   }
 

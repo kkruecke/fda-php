@@ -1,9 +1,12 @@
 <?php
 namespace Maude;
 
-class AbstractTableIterator implements DatabaseInsertIterator, \Iterator {
+class AbstractTableIterator extends DatabaseInsertIterator, \Iterator {
 
-  public function next() : void;
+  public function next() : void
+  {
+      return;
+  }    
    
   public function valid() : bool
   {
@@ -11,11 +14,13 @@ class AbstractTableIterator implements DatabaseInsertIterator, \Iterator {
   }
 
   public function rewind() : bool
+  {
+     return true; 
+  }    
   
-  public function current() : \PDOStatement;
+  abstract public function current() : \PDOStatement;
   
-  public function key() : int;
-
+  abstract public function key() : int;
 
   public function insert(\Ds\Vector $vec) : void;
 

@@ -1,15 +1,15 @@
 <?php
-use Maude\{Configuration as Configuration,
-ExistsInDeviceFunctor as ExistsInDeviceFunctor,
-SplFileObjectExtended as SplFileObjectExtended,
-DeviceTableFilterIterator as  DeviceTableFilterIterator,
-DeviceTableInsertIterator as DeviceTableInsertIterator,
-MdrTableFilterIterator as  MdrTableFilterIterator,
-MdrTableInsertIterator as MdrTableInsertIteratpr,
-TextTableFilterIterator as  TextTableFilterIterator,
-TextTableInsertIterator as TextTableInsertIterator,
-MaudeRegexIterator as MaudeRegexIterator,
-MaudeFilterIterator as MaudeFilterIterator};
+use Maude\Configuration,
+Maude\ExistsInDeviceFunctor,
+Maude\SplFileObjectExtended,
+Maude\DeviceTableFilterIterator,
+Maude\DeviceTableInsertIterator,
+Maude\MdrTableFilterIterator,
+Maude\MdrTableInsertIterator,
+Maude\TextTableFilterIterator,
+Maude\TextTableInsertIterator,
+Maude\MaudeRegexIterator,
+Maude\MaudeFilterIterator;
  
 require_once("class_loader.php");
 

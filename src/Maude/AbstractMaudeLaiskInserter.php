@@ -5,15 +5,15 @@ namespace Maude;
  * Database insert iterator 
  */
 
-class AbstractMaudeLasikInserter extends AbstractTableInserter {
+class AbstractMaudeLasikInserter extends AbstractTableInserter, implements \Iterator {
 
   private $pdo;
   private \PDOStatement $stmt;
   private $rc;
 
-  abstract protected function bindParameters(\PDOStatement $stmt);   // not implemented
+  abstract protected function bindParameters(\PDOStatement $stmt);   // derived classes must implemented this method
 
-  abstract protected function assignParameters(\Ds\Vector $vec);     // not implemented
+  abstract protected function assignParameters(\Ds\Vector $vec);     // derived classes must implemented this method
 
   /*
    * The ctor is a "template method" pattern that invokes the bindParameters, which derived classes must override
@@ -34,24 +34,16 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter {
        // template method pattern
        bindParameters($this->stmt);
   }
-
-  public function next() 
-  {
-  }
-   
-  public function valid() : bool
-  {
-     return $rc;
-  }
-
-  public function rewind() : bool
-  {
-     return true;
-  } 
   
-  abstract public function current() : \PDOStatement; // TODO: <-- What should this return?
-  
-  public function key() : int;
+  public function current() : \PDOStatement
+  {
+    return $this->stmt;   
+  }    
+    
+  public function key() : int
+  {
+         
+  }
 
   /* 
    * insert() is a "template method" pattern that invokes the assignParameters, which derived classes must override to assign the parameters for the 
