@@ -1,5 +1,25 @@
-The functor for the devicefoi table, to tell if we have a new record....
-should do what the C++ code did:
+The functor for the devicefoi table, to tell if we have a new record...it should do what the C++ code does:
 
-Criteria: After we know it is a lasik record, check that its sequence number is 1.0 and that its mdr_report_key is--what; is greater than the max value in the 
-devicefoi table? Examine the C++ code to know for sure.
+        
+    if (device_product_code != DeviceTable::HNO && device_product_code != DeviceTable::LZS) {
+        
+        return false;
+    }
+
+    // The latest sequence numbers the FDA uses are of the form 1.x 
+    float seq_no = std::stof(fields.at(to_int(VectorIndecies::seq_no))); //++
+ 
+    // Test that the sequence number, from column 5 of the .txt file, is "1". We ignore all other sequence numbers as they have duplicate mdr report keys.
+    //--if ( seq_no != "1") {
+    if (seq_no != 1.0) {
+
+        return false;
+    }
+          
+    // It is new lasik-related that has not already been encountered?
+    return (mdr_report_key > max_mdr_report_key) ? true : false;
+
+NOTE: The functor is really acting like filter! Since we already have MaudeFilterIterator (which checks for LASIK records, the first test above), can we incorporate
+the sequence and greater-than test into it. This would mean adding a filter class to MaudeFilterIterator that would take the role of our functor classes, or maybe
+we can have functors with more state and that take more general parameter, like a \Ds\Vector say? There are several possibilites to explore.
+

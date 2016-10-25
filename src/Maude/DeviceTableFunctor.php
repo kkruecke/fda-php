@@ -28,6 +28,19 @@ class GreaterThanFunctor implements Functor {
      public function __invoke(int $mdr_report_key) : bool
      {
          //TODO: Need to reflect the C++ code and check--for devicefoi--the sequence number in the devfoi.txt   
+    // The latest sequence numbers the FDA uses are of the form 1.x 
+    float seq_no = std::stof(fields.at(to_int(VectorIndecies::seq_no))); //++
+ 
+    // Test that the sequence number, from column 5 of the .txt file, is "1". We ignore all other sequence numbers as they have duplicate mdr report keys.
+    //--if ( seq_no != "1") {
+    if (seq_no != 1.0) {
+
+        return false;
+    }
+          
+    // It is new lasik-related that has not already been encountered?
+    return (mdr_report_key > max_mdr_report_key) ? true : false;
+
          return ($mdr_report_key > $this->device_max_mdr_report_key) ? true : false;
      }
 }
