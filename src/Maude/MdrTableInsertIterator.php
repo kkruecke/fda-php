@@ -23,8 +23,8 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   protected function assignParameters(\Ds\Vector $vec) 
   {
-    $this->mdr_report_key = $vec[0];
-    $this->device_product_cod e= $vec[1];
+    $this->mdr_report_key = (int) $vec[0];
+    $this->device_product_code = (string) $vec[1];
   }
 
   public function insert(\Ds\Vector $vec) {} 

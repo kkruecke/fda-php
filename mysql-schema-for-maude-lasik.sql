@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `foi_device`
 --
 
-CREATE TABLE IF NOT EXISTS `foi_device` (
+CREATE TABLE IF NOT EXISTS `devicefoi` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `mdr_report_key` int(11) unsigned NOT NULL,
   `device_product_code` char(3) NOT NULL,

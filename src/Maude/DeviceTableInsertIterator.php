@@ -6,7 +6,7 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   private $mdr_report_key;
   private $device_product_code;
-  private $device_report_code;
+  private $device_sequence_number;
 
   private $rc;
 
@@ -28,10 +28,8 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   protected function assignParameters(\Ds\Vector $vec) 
   {
-    // TODO: Check the order or use class constant integers: class Sample { private $mdr_key_index = 0; ...
     $this->mdr_report_key = (int) $vec[0];
-    $this->device_report_code = $vec[1];
-    $this->device_product_code =$vec[2];
+    $this->device_product_code = (string) $vec[2];
 
     return;
   }

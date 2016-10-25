@@ -13,10 +13,10 @@ class MaudeRegexIterator extends \RegexIterator {
 
         $this->vector = new \Ds\Vector;  
         
-        $cnt = \count($indecies);
+        $cnt = \count($indecies);   
 
         $this->vector->allocate($cnt);
-
+        
         $this->indecies = $indecies;
     } 
 
@@ -27,8 +27,8 @@ class MaudeRegexIterator extends \RegexIterator {
       $i = 0; 
 
       foreach ($this->indecies as $index) {
-                   
-          $this->vector->push( $array[1][$index] );
+                    
+          $this->vector->insert($i++, $array[1][$index]); 
       }
 
       return $this->vector;

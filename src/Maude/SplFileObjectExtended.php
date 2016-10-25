@@ -16,7 +16,8 @@ class SplFileObjectExtended extends \SplFileObject   {
 
     public function current() : string
     {
-      return parent::current(); 
+      $str = parent::current(); 
+      return $str;
     }
 
     public function rewind() 

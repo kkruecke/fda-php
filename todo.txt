@@ -1,1 +1,5 @@
-Still some bugs in the database insert iterator.
+The functor for the devicefoi table, to tell if we have a new record....
+should do what the C++ code did:
+
+Criteria: After we know it is a lasik record, check that its sequence number is 1.0 and that its mdr_report_key is--what; is greater than the max value in the 
+devicefoi table? Examine the C++ code to know for sure.

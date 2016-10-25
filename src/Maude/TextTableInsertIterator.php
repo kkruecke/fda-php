@@ -23,7 +23,7 @@ class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   protected function assignParameters(\Ds\Vector $vec) 
   {
-    $this->mdr_report_key = $vec[0];
+    $this->mdr_report_key = (int) $vec[0];
     $this->device_report_code = $vec[1];
   }
  
