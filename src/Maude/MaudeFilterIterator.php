@@ -16,7 +16,9 @@ class MaudeFilterIterator extends FilterIterator {
 
     public function accept() : bool
     {
-       return $this->functor($this->current());
+       $mdr_report_key = (int) $this->current()[0];
+
+       return call_user_func($this->functor, $mdr_report_key);
     }
 }
 
