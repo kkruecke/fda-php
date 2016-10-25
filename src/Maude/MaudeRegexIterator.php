@@ -4,7 +4,7 @@ use \RegexIterator;
 
 class MaudeRegexIterator extends \RegexIterator {
 
-    private $vector; 
+    private $vector;   // of string values
     private $indecies;
 
     public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indecies)
@@ -12,21 +12,23 @@ class MaudeRegexIterator extends \RegexIterator {
         parent::__construct($spl_file_object_ex,  '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
 
         $this->vector = new \Ds\Vector;  
+        
+        $cnt = \count($indecies);
 
-        $this->vector->allocate(\count($indecies));
+        $this->vector->allocate($cnt);
 
         $this->indecies = $indecies;
     } 
 
     public function current() : \Ds\Vector
     {
-      $a = parent::current();
-
+      $array = parent::current();
+      
       $i = 0; 
 
       foreach ($this->indecies as $indx) {
-
-          $this->vector[$i++] = $a[$indx];
+                   
+          $this->vector->push( $array[1][$indx] );
       }
 
       return $this->vector;

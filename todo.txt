@@ -1,1 +1,2 @@
-Beta code complete. Ready for testing.
+You can't really override the function call operator in php by simply overriding __invoke--I don't think. Anyway, there is a bug involving the 
+Functor logic.
