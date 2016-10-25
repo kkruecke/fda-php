@@ -1,15 +1,16 @@
 <?php
 namespace Maude;
+use \PDOStatement, \Iterator;
 
 /*
  * Database insert iterator 
  */
 
-class AbstractMaudeLasikInserter extends AbstractTableInserter, implements \Iterator {
+abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIterator */ implements DatabaseTableInsertIterator {
 
   private $pdo;
-  private \PDOStatement $stmt;
-  private $rc;
+  private $stmt;
+  private $valid;
 
   abstract protected function bindParameters(\PDOStatement $stmt);   // derived classes must implemented this method
 
@@ -25,35 +26,53 @@ class AbstractMaudeLasikInserter extends AbstractTableInserter, implements \Iter
 
   public function __construct(\PDO $pdo_in, string $insert_sql_str) 
   {
-       $this->rc = true;
-
        $this->pdo = $pdo_in;
 
-       $this->stmt = $this->pdo->prepare($insert_str); 
+       $this->stmt = $this->pdo->prepare($insert_sql_str); 
 
        // template method pattern
-       bindParameters($this->stmt);
+       $this->bindParameters($this->stmt);
+       
+       $this->valid = true;
   }
   
-  public function current() : \PDOStatement
+  public function current() : PDOStatement
   {
     return $this->stmt;   
   }    
     
   public function key() : int
   {
-         
+    return 0; // Not meaning full, so we simply return 0.      / implements /*
+  }
+  
+  public function next() 
+  {
+      return;
+  }    
+     
+  public function valid() : bool
+  {
+      return $this->valid; // This is the result of $this->stmt->execute()
+  }
+  
+  public function rewind() 
+  {
+      return;
   }
 
   /* 
    * insert() is a "template method" pattern that invokes the assignParameters, which derived classes must override to assign the parameters for the 
    * prepared statement. 
    */
-  public function insert(\Ds\Vector $vec)
+  public function insert(\Ds\Vector $vec) : bool
   {
        assignParameters($vec);       
     
-       $rc = $this->stmt->execute();
+       $this->valid = $this->stmt->execute();
+       
+       return $this->valid;
+              
   }
 }
 ?>

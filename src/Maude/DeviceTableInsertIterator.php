@@ -2,7 +2,7 @@
 namespace Maude;
 use Iterator;
 
-class DeviceTableInsertIterator extends AbstractMaudeLasikIterator {
+class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   private $mdr_report_key;
   private $device_product_code;
@@ -21,18 +21,16 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikIterator {
       $insert_stmt->bindParam(':mdr_report_key', $this->mdr_report_key, \PDO::PARAM_INT);
         
       $insert_stmt->bindParam(':device_product_code', $this->device_product_code, \PDO::PARAM_STR);
+      
+      return;
   }
 
-  protected function assignParameters(\Ds\Vector $vec) : void
+  protected function assignParameters(\Ds\Vector $vec) 
   {
     // TODO: Check the order or use class constant integers: class Sample { private $mdr_key_index = 0; ...
     $this->mdr_report_key = $vec[0];
     $this->device_report_code = $vec[1];
-  }
- 
-  // TODO: What to do about these methods that are abstract, right? 
-  public function current() : \PDOStatement;
-  
-  public function key() : int;
 
+    return;
+  }
 }

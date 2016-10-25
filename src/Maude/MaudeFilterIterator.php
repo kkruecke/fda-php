@@ -10,7 +10,7 @@ class MaudeFilterIterator extends FilterIterator {
 
     public function __construct(MaudeRegexIterator $iterator, Functor $functor)
     {
-        parent::construct($iterator);
+        parent::__construct($iterator);
         $this->functor = $functor;
     } 
 

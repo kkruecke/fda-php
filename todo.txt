@@ -1,2 +1,1 @@
-1. The AbstractMaudeLasikInsert is giving an error about an onon-abstract method not implemented, but I don't understand whyTest code.
-2. I can't instantiate, using new, a class using a variable containaing the class's name. 
+Beta code complete. Ready for testing.

@@ -2,7 +2,7 @@
 namespace Maude;
 use Iterator;
 
-class MdrTableInsertIterator extends AbstractMaudeLasikIterator {
+class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
    private  $device_product_code;
    private  $device_key;

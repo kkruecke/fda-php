@@ -2,7 +2,7 @@
 namespace Maude;
 use Iterator;
 
-class TextTableInsertIterator extends DatabaseInsertIterator {
+class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   private $mdr_report_key;
   private $text_report;
@@ -27,9 +27,5 @@ class TextTableInsertIterator extends DatabaseInsertIterator {
     $this->device_report_code = $vec[1];
   }
  
-  // TODO: What to do about these methods that are abstract, right? 
-  public function current() : \PDOStatement;
-  
-  public function key() : int;
 }
 ?>

@@ -2,26 +2,26 @@
 <configuration>
 <database>
   <host>localhost</host>
-  <name>medwatch_latest</name>
+  <name>medwatch_redux</name>
   <user>kurt</user>
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="Maude\GreaterThanFunctor" dbinsert_iter="DeviceTableInsertIterator">
+    <file name="data/foidev.txt" functor="Maude\GreaterThanFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
     <indecies>
         <index>0</index>
         <index>4</index>
         <index>25</index>
     </indecies>
     </file>
-    <file name="data/mdrfoi.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="MdrTableInsertIterator">
+    <file name="data/mdrfoi.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="Maude\MdrTableInsertIterator">
     <indecies>
         <index>0</index>
         <index>3</index>
         <index>7</index>
     </indecies>
     </file>
-    <file name="data/foitext.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="TextTableInsertIterator">
+    <file name="data/foitext.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
     <indecies>
         <index>0</index>
         <index>1</index>

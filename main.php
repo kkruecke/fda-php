@@ -50,13 +50,13 @@ try {
       
       $functorName = (string) $file['functor'];
       
-      $dbIteratorName  = (string) $file['dbinsert_iter'];;
+      $dbIteratorName  = (string) $file['dbinsert_iter'];
           
       $functor = new $functorName($pdo);
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
             
-      $dbIterator = new $dbIteratorName;
+      $dbIterator = new $dbIteratorName($pdo);
   
       foreach ($filterIterator as $vec) {
       
