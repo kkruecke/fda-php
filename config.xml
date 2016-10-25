@@ -7,7 +7,7 @@
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="GreatThanFunctor" dbinsert_iter="DeviceTableInsertIterator">
+    <file name="data/foidev.txt" functor="GreaterThanFunctor" dbinsert_iter="DeviceTableInsertIterator">
     <indecies>
         <index>0</index>
         <index>4</index>

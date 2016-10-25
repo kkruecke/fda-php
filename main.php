@@ -16,17 +16,16 @@ require_once("class_loader.php");
 
 boot_strap();
 
-function getIndecies(\SimpleXMLElement $file) : \Ds\Vector 
+
+function getFileIndecies(\SimpleXMLElement $file) : \Ds\Vector 
 {
    $vec = new \Ds\Vector;
-
    $indecies =  $file->indecies;
    
    foreach($indecies->index as $index) {
-
+       
       $vec->push((int) $index);
    }
-
    return $vec;
 }
 
@@ -39,21 +38,25 @@ try {
    $pdo = new \PDO("mysql:host=" . $db->host . ";dbname=" . $db->name,
                          $db->user, $db->password);  
    
-   $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );  
-   
+   $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
+    
    foreach($config->getFiles()->file as $file) {
-
+       
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $indecies = getIndecies($file);
+      $indecies = getFileIndecies($file);
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
-      $functor = new $file['functor']($pdo);
+      $functorName = (string) $file['functor'];
+      
+      $dbIteratorName  = (string) $file['dbinsert_iter'];;
+          
+      $functor = new $functorName($pdo);
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
-
-      $dbIterator = new $file['dbinsert_iter'];
+            
+      $dbIterator = new $dbIteratorName;
   
       foreach ($filterIterator as $vec) {
       

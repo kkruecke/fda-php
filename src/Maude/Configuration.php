@@ -35,7 +35,7 @@ class Configuration {
     {
         return self::$files;
     }
-
+   
     public static function getConfiguration(string $file_name="") : Configuration
     {
       static $the_configuration;
