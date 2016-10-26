@@ -4,7 +4,8 @@ require_once("stdlib/algorithms.php");
 
 class MdrTableFunctor implements MaudeFunctor {
 
-     const index_mdr_report_key = 0;
+     const index_mdr_report_key = 0; // This is the index in \Ds\Vector which contains all only the fields in a row of the mdrfoi.txt file that are specified by
+                                     // <indecies></indecies> section.
 
      private  $mdr_report_keys;   // sorted \Ds\Vector
  

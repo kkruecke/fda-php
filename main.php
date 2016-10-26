@@ -61,10 +61,12 @@ try {
       $cnt = 0; 
   
       foreach ($filterIterator as $vec) {
-                
+
+         $dbIterator->insert($vec)
+       
          if ((++$cnt % 100) == 0) {
 
-            echo $cnt . " lines inserted into current table.\n";
+            echo $cnt . " lines inserted using " $dbIteratorName . "\n";
          } 
       }
   }

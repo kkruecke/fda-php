@@ -14,11 +14,12 @@ class TextTableFunctor implements MaudeFunctor {
     5. Date Report (from mdr_text table)  -- it seems this can be empty, but in the current year file only.
     6. Text (B5, or H3 or H10 from mdr_text table) 
 
-   We only save the MDR Report Key and the Text
+   Only five of these values have been extracted from the foitext.txt file into a \Ds\Vector. The indecies of those five values are given in the <indecies></indecies
+   section of config.xml.
  */
-     const index_mdr_report_key = 0;
-     const index_text_type_code = 2:
-     const index_patient_seq_no = 3:
+     const mdr_report_key = 0;
+     const text_type_code = 2:
+     const patient_seq_no = 3:
 
      const TEXT_TYPE_CODE = 'D';
      const PATIENT_SEQ_NO = '1';
@@ -76,15 +77,15 @@ class TextTableFunctor implements MaudeFunctor {
       2.       E         |  H3     | Manufacturer's section?
       3.       N         |  H10    | Additional Manufacturer's narrative
     */
-         $text_type_code = (string) $vector[TextTableFunctor::index_text_type_code];
+         $text_type_code = (string) $vector[TextTableFunctor::text_type_code];
 
-         $patient_seq_no = (string) $vector[TextTableFunctor::index_sequence_no];
+         $patient_seq_no = (string) $vector[TextTableFunctor::sequence_no];
 
          $must_be_true = (text_type_code[0] == TextTableFunctor::TEXT_TYPE_CODE && ($patient_seq_no[0] == TextTableFunctor::PATIENT_SEQ_NO || empty($patient_seq_no)));  
 
          if (!$must_be_true) return false;
 
-         $mdr_report_key = (int) $vector[TextTableFunctor::index_mdr_report_key];
+         $mdr_report_key = (int) $vector[TextTableFunctor::mdr_report_key];
 
          if ($mdr_report_key == $this->prior_mdr_report_key) {
 

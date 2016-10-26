@@ -3,9 +3,10 @@ namespace Maude;
 
 class DeviceTableFunctor implements MaudeFunctor {
 
-  const index_mdr_report_key =  0;
-  const index_seq_no = 1;
-  const index_prod_code =  2;
+     // These are indexes into \Ds\Vector,  which contains only the fields in a row of devicefoi .txt file specified by the <indecies></indecies> in config.xml. 
+     const mdr_report_key = 0;
+     const device_sequence_no = 1;
+     const device_report_prod_code = 2;
 
      private $device_max_mdr_report_key;
  
@@ -31,7 +32,7 @@ class DeviceTableFunctor implements MaudeFunctor {
      public function __invoke(\Ds\Vector $vector) : bool
      {
          // Is it a LASIK record?
-         $prod_code = (string) $vector[DeviceTableFunctor::index_prod_code];
+         $prod_code = (string) $vector[DeviceTableFunctor::device_report_product_code];
          
          if ($prod_code != "LZS" && $prod_code != "HNO") {
              
@@ -39,7 +40,7 @@ class DeviceTableFunctor implements MaudeFunctor {
          }
          
          // Is the sequence number 1.0?
-         $seq_no = (string) $vector[DeviceTableFunctor::index_seq_no];
+         $seq_no = (string) $vector[DeviceTableFunctor::device_sequence_no];
  
          if ($seq_no != "1.0") {
 
@@ -47,7 +48,7 @@ class DeviceTableFunctor implements MaudeFunctor {
          }
 
          // Is it a new mdr_report_key, greater than the prior max value in the table before we ran this code?
-         $mdr_report_key = (int) $vector[DeviceTableFunctor::index_mdr_report_key];
+         $mdr_report_key = (int) $vector[DeviceTableFunctor::mdr_report_key];
 
          return ($mdr_report_key > $this->device_max_mdr_report_key) ? true : false;
      }
