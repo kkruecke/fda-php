@@ -64,7 +64,7 @@ try {
                 
          if ((++$cnt % 100) == 0) {
 
-            echo $cnt . " lines inserted into current table\n.";
+            echo $cnt . " lines inserted into current table.\n";
          } 
       }
   }
