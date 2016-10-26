@@ -5,7 +5,15 @@ use \RegexIterator;
 class MaudeRegexIterator extends \RegexIterator {
 
     private $vector;   // of string values
-    private $indecies;
+    private $indecies; /* These values come from config.xml, from <indecies><index>n</index>...</indecies> section:
+                           <file>
+                             <indecies>
+                               <index>1</index>
+                               <index>...</index>
+                             </indecies>
+                           </file>
+                        */
+ 
 
     public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indecies)
     {

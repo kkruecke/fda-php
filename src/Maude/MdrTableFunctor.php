@@ -1,7 +1,8 @@
 <?php
 namespace Maude;
+require_once("stdlib/algorithms.php");
 
-class MdrTableFunctor implements Functor {
+class MdrTableFunctor implements MaudeFunctor {
 
      const index_mdr_report_key = 0;
 

@@ -1,8 +1,8 @@
 <?php
 namespace Maude;
+require_once("stdlib/algorithms.php");
 
-
-class TextTableFunctor implements Functor {
+class TextTableFunctor implements MaudeFunctor {
 
 /*
  * FOI TEXT files contains the following 6 fields:
@@ -17,10 +17,11 @@ class TextTableFunctor implements Functor {
    We only save the MDR Report Key and the Text
  */
      const index_mdr_report_key = 0;
-     const index_text_type_code = ?:
+     const index_text_type_code = 2:
+     const index_patient_seq_no = 3:
+
      const TEXT_TYPE_CODE = 'D';
      const PATIENT_SEQ_NO = '1';
-     const index_patient_seq_no = ?:
 
      private  $mdr_report_keys;       // sorted \Ds\Vector
      private  $prior_mdr_report_key;  // TODO: Set this value appropriately

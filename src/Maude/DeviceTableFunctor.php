@@ -1,7 +1,7 @@
 <?php
 namespace Maude;
 
-class DeviceTableFunctor implements Functor {
+class DeviceTableFunctor implements MaudeFunctor {
 
   const index_mdr_report_key =  0;
   const index_seq_no = 1;
