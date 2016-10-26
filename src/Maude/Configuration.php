@@ -35,6 +35,19 @@ class Configuration {
     {
         return self::$files;
     }
+    
+    public function getIndecies(\SimpleXMLElement $file) : \Ds\Vector 
+    {
+      $vec = new \Ds\Vector;
+      $indecies =  $file->indecies;
+   
+      foreach($indecies->index as $index) {
+       
+         $vec->push((int) $index);
+      }
+      return $vec;
+    }
+    
    
     public static function getConfiguration(string $file_name="") : Configuration
     {

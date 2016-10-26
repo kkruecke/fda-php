@@ -15,19 +15,20 @@ require_once("class_loader.php");
 
 boot_strap();
 
-//$test = new Maude\GreaterThanFunctor();
-
-function getFileIndecies(\SimpleXMLElement $file) : \Ds\Vector 
+function getFileIndecies2(\SimpleXMLElement $file) : \Ds\Map 
 {
-   $vec = new \Ds\Vector;
+   $map = new \Ds\Map;
    $indecies =  $file->indecies;
    
    foreach($indecies->index as $index) {
-       
-      $vec->push((int) $index);
+
+      $field_name = (string) $index['field_name']; 
+
+      $map[$field_name] =  $index;
    }
-   return $vec;
+   return $map;
 }
+
 
 try {
 
@@ -44,7 +45,7 @@ try {
        
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $indecies = getFileIndecies($file);
+      $indecies = $config->getIndecies2($file);
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
@@ -62,11 +63,11 @@ try {
   
       foreach ($filterIterator as $vec) {
 
-         $dbIterator->insert($vec)
+         $dbIterator->insert($vec);
        
          if ((++$cnt % 100) == 0) {
 
-            echo $cnt . " lines inserted using " $dbIteratorName . "\n";
+            echo $cnt . " lines inserted using " . $dbIteratorName . "\n";
          } 
       }
   }
