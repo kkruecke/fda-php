@@ -3,9 +3,17 @@ namespace Maude;
 
 class DeviceTableFunctor implements Functor {
 
+
+/*
+  const seq_no =
+  const prod_code =
+  const mdr_report_key = 
+*/
+  const index_mdr_report_key =  0;
+  const index_seq_no = 1;
+  const index_prod_code =  2;
+
      private $device_max_mdr_report_key;
-     const seq_no_index = 1;
-     const mdr_report_key_index = 0;
  
      public function __construct(\PDO $pdo)
      {
@@ -29,7 +37,7 @@ class DeviceTableFunctor implements Functor {
      public function __invoke(\Ds\Vector $vector) : bool
      {
          // Is it a LASIK record?
-         $prod_code = (string) $vector[DeviceTableFunctor::seq_no_index];
+         $prod_code = (string) $vector[DeviceTableFunctor::index_prod_code];
          
          if ($prod_code != "LZS" && $prod_code != "HNO") {
              
@@ -37,15 +45,15 @@ class DeviceTableFunctor implements Functor {
          }
          
          // Is the sequence number 1.0?
-         $seq_no = (float) $vector[DeviceTableFunctor::seq_no_index];
+         $seq_no = (string) $vector[DeviceTableFunctor::index_seq_no];
  
-         if ($seq_no != 1.0) {
+         if ($seq_no != "1.0") {
 
              return false;
          }
 
          // Is it a new mdr_report_key, greater than the prior max value in the table before we ran this code?
-         $mdr_report_key = (int) $vector[DeviceTableFunctor::mdr_report_key_index];
+         $mdr_report_key = (int) $vector[DeviceTableFunctor::index_mdr_report_key];
 
          return ($mdr_report_key > $this->device_max_mdr_report_key) ? true : false;
      }

@@ -1,4 +1,17 @@
-Creaet traits that have indecies into the maude .txt fields and into the extractor vector. Just borrow these from the ~/fda/include/ C++ code.
+Create traits that have indecies, like the C++ code in the ~/fda/include/ headers. Something like
+
+DeviceTraits {
+  const seq_no =
+  const prod_code =
+  const mdr_report_key = 
+  const index_seq_no =
+  const index_prod_code_index =
+  const index_mdr_report_key = 
+}
+MdrTraits {
+}
+TextTraits {
+}
 
 The functor for the devicefoi table, to tell if we have a new record...it should do what the C++ code does:
 
