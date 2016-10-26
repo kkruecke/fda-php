@@ -8,7 +8,7 @@ class MaudeFilterIterator extends FilterIterator {
 
     private $functor; 
 
-    public function __construct(MaudeRegexIterator $iterator, Functor $functor)
+    public function __construct(MaudeRegexIterator $iterator, MaudeFunctor $functor)
     {
         parent::__construct($iterator);
         $this->functor = $functor;
