@@ -2,7 +2,7 @@
 namespace Maude;
 //require_once("../stdlib/algorithms.php");
 
-class GreaterThanFunctor implements Functor {
+class GreaterThanFunctor implements MaudeFunctor {
 
      private $device_max_mdr_report_key;
  

@@ -6,7 +6,7 @@ use \PDOStatement, \Iterator;
  * Database insert iterator 
  */
 
-abstract class AbstractMaudeLasikInsertIterator /*extends AbstractTableInsertIterator */ implements DatabaseTableInsertIterator {
+abstract class AbstractMaudeLasikInsertIterator implements DatabaseTableInsertIterator {
 
   private $pdo;
   private $stmt;

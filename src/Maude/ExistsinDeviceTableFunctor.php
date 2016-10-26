@@ -2,7 +2,7 @@
 namespace Maude;
 require_once("stdlib/algorithms.php");
 
-class ExistsinDeviceTableFunctor implements Functor {
+class ExistsinDeviceTableFunctor implements MaudeFunctor {
 
      \Ds\Vector $sorted_vector;
 
