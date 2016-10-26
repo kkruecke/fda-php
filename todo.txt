@@ -1,3 +1,5 @@
+Creaet traits that have indecies into the maude .txt fields and into the extractor vector. Just borrow these from the ~/fda/include/ C++ code.
+
 The functor for the devicefoi table, to tell if we have a new record...it should do what the C++ code does:
 
         

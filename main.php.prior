@@ -59,7 +59,7 @@ try {
       $dbIterator = new $dbIteratorName($pdo);
   
       foreach ($filterIterator as $vec) {
-      
+                
          $dbIterator->insert($vec);
          
          if (($$dbIterator->getInsertCount() % 100) == 0) {

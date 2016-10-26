@@ -25,7 +25,8 @@ class GreaterThanFunctor implements Functor {
         }
      }
      
-     public function __invoke(int $mdr_report_key) : bool
+    //--public function __invoke(int $mdr_report_key) : bool
+    public function __invoke(\Ds\Vector $vector) : bool;
      {
          return ($mdr_report_key > $this->device_max_mdr_report_key) ? true : false;
      }

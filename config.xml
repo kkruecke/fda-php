@@ -7,7 +7,7 @@
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="Maude\GreaterThanFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
+    <file name="data/foidev.txt" functor="Maude\DeviceTableFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
     <indecies>
         <index>0</index>
         <index>4</index>

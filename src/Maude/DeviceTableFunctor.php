@@ -1,10 +1,11 @@
 <?php
 namespace Maude;
-//require_once("../stdlib/algorithms.php");
 
-class GreaterThanFunctor implements Functor {
+class DeviceTableFunctor implements Functor {
 
      private $device_max_mdr_report_key;
+     const seq_no_index = 1;
+     const mdr_report_key_index = 0;
  
      public function __construct(\PDO $pdo)
      {
@@ -25,21 +26,26 @@ class GreaterThanFunctor implements Functor {
         }
      }
      
-     public function __invoke(int $mdr_report_key) : bool
+     public function __invoke(\Ds\Vector $vector) : bool
      {
-         //TODO: Need to reflect the C++ code and check--for devicefoi--the sequence number in the devfoi.txt   
-    // The latest sequence numbers the FDA uses are of the form 1.x 
-    float seq_no = std::stof(fields.at(to_int(VectorIndecies::seq_no))); //++
+         // Is it a LASIK record?
+         $prod_code = (string) $vector[DeviceTableFunctor::seq_no_index];
+         
+         if ($prod_code != "LZS" && $prod_code != "HNO") {
+             
+              return false;
+         }
+         
+         // Is the sequence number 1.0?
+         $seq_no = (float) $vector[DeviceTableFunctor::seq_no_index];
  
-    // Test that the sequence number, from column 5 of the .txt file, is "1". We ignore all other sequence numbers as they have duplicate mdr report keys.
-    //--if ( seq_no != "1") {
-    if (seq_no != 1.0) {
+         if ($seq_no != 1.0) {
 
-        return false;
-    }
-          
-    // It is new lasik-related that has not already been encountered?
-    return (mdr_report_key > max_mdr_report_key) ? true : false;
+             return false;
+         }
+
+         // Is it a new mdr_report_key, greater than the prior max value in the table before we ran this code?
+         $mdr_report_key = (int) $vector[DeviceTableFunctor::mdr_report_key_index];
 
          return ($mdr_report_key > $this->device_max_mdr_report_key) ? true : false;
      }

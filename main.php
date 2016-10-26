@@ -57,12 +57,12 @@ try {
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
             
       $dbIterator = new $dbIteratorName($pdo);
+
+      $cnt = 0; 
   
       foreach ($filterIterator as $vec) {
-      
-         $dbIterator->insert($vec);
-         
-         if (($$dbIterator->getInsertCount() % 100) == 0) {
+                
+         if ((++$cnt % 100) == 0) {
 
             echo $cnt . " lines inserted into current table\n.";
          } 
