@@ -1,4 +1,7 @@
-TODO: Override in the devied class and call this parent method: parent::valide(). In derive clas, if parent::valid() is false, log the result to a file.
+1. Maybe we should log unsuccessful efforts to locate mdr and text rows in devicefoi.txt? That is, Mdr and Text functors __invoke() returns false.
+   And then log this.
+
+2. Or we could override in the devied class and call this parent method: parent::valide(). In derive clas, if parent::valid() is false, log the result to a file.
 
 AbstractMaudeLaiskInsertIterator { //...
  
