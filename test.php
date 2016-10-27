@@ -12,6 +12,7 @@ Maude\DeviceTableFunctor,
 Maude\TextTableFunctor;
 
 require_once("class_loader.php");
+require_once("src/stdlib/algorithms.php");
 
 boot_strap();
 
@@ -35,6 +36,16 @@ try {
    $tableFunctor = new MdrTableFunctor($pdo);
       
    $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $tableFunctor);
+
+   $sorted = new \Ds\Vector([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);  
+
+   for($i = 20; $i > 0; --$i) {
+
+       $b = binary_search($sorted, $i);
+       $msg = $b ? "true" : "false";
+       echo "binary_search($sorted, $i) = " . $msg . "\n";
+      
+   }
  
   // TODO: Add code to insert new Maude tables data into medwatch_report table.
 
