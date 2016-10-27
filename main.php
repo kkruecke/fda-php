@@ -45,17 +45,15 @@ try {
        
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $indecies = $config->getIndecies2($file);
+      $indecies = $config->getIndecies($file);
 
       $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
-      $functorName = (string) $file['functor'];
+      $tableFunctor = (string) $file['functor'];
       
+      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new $tableFunctor($pdo));
+
       $dbIteratorName  = (string) $file['dbinsert_iter'];
-          
-      $functor = new $functorName($pdo);
-      
-      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $functor);
             
       $dbIterator = new $dbIteratorName($pdo);
 

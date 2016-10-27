@@ -14,8 +14,15 @@ class TextTableFunctor implements MaudeFunctor {
     5. Date Report (from mdr_text table)  -- it seems this can be empty, but in the current year file only.
     6. Text (B5, or H3 or H10 from mdr_text table) 
 
-   Only five of these values have been extracted from the foitext.txt file into a \Ds\Vector. The indecies of those five values are given in the <indecies></indecies
-   section of config.xml.
+   Only five of these values have been extracted from the foitext.txt file into a \Ds\Vector by MaudeRegexIterator(the indecies of those five values are in
+   the <indecies></indecies> section of config.xml.): 
+    1. mdr report key
+    2. text key
+    3. text type code
+    4. patient sequence number
+    5. text (#6. above)
+   
+   This functor will only examine the mdr_report_key, the text_type_code and the patient_sequence_no.
  */
      const mdr_report_key = 0;
      const text_type_code = 2:

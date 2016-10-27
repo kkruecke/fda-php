@@ -39,7 +39,10 @@ class Configuration {
     public function getIndecies(\SimpleXMLElement $file) : \Ds\Vector 
     {
       $vec = new \Ds\Vector;
+       
       $indecies =  $file->indecies;
+
+      $vec->allocate($indecies->count());
    
       foreach($indecies->index as $index) {
        

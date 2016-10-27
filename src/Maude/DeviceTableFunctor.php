@@ -3,10 +3,10 @@ namespace Maude;
 
 class DeviceTableFunctor implements MaudeFunctor {
 
-     // These are indexes into \Ds\Vector,  which contains only the fields in a row of devicefoi .txt file specified by the <indecies></indecies> in config.xml. 
+     // These are indexes into \Ds\Vector, which contains only those fields in a row from devicefoi .txt file given by the <indecies></indecies> in config.xml. 
      const mdr_report_key = 0;
      const device_sequence_no = 1;
-     const device_report_prod_code = 2;
+     const device_report_product_code = 2;
 
      private $device_max_mdr_report_key;
  
