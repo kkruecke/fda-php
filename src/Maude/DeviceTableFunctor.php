@@ -15,7 +15,7 @@ class DeviceTableFunctor implements MaudeFunctor {
         // If the table is empty, then set device_max_mdr_report_key to -1.
         $cnt_stmt = $pdo->query("SELECT count(*) FROM devicefoi");
 
-        $count = (int) $cnt_stmt->fetchColumn();
+        $count = (int) $cnt_stmt->fetchColumn(0); // TODO: The case shouldn't be need--right?
  
         if ($count != 0) {
 

@@ -46,7 +46,7 @@ class Configuration {
    
       foreach($indecies->index as $index) {
        
-         $vec->push((int) $index);
+         $vec->push(intval($index));
       }
       return $vec;
     }
