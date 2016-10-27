@@ -32,7 +32,7 @@ abstract class ExistsinDeviceTableFunctor implements MaudeFunctor {
      
      public function existsInDeviceTable($mdr_report_key) : bool
      {
-         return binary_search($this->$mdr_report_keys, $mdr_report_key);
+         return binary_search($this->mdr_report_keys, $mdr_report_key);
      }
      
 } 
