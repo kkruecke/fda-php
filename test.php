@@ -26,31 +26,17 @@ try {
    
    $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
     
-   foreach($config->getFiles()->file as $file) {
        
-      $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
+   $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
-      $indecies = $config->getIndecies($file);
+   $indecies = $config->getIndecies($file);
 
-      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
+   $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
-      $tableFunctor = (string) $file['functor'];
+   $tableFunctor = new MdrTableFunctor($pdo);
       
-      $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new $tableFunctor($pdo));
+   $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, $tableFunctor);
 
-      $dbIteratorName  = (string) $file['dbinsert_iter'];
-            
-      $dbIterator = new $dbIteratorName($pdo);
-
-      foreach ($filterIterator as $vec) {
-
-         $dbIterator->insert($vec);
-       
-         if (($dbIterator->getInsertCount() % 100) == 0) {
-
-            echo $cnt . " lines inserted using " . $dbIteratorName . "\n";
-         } 
-      }
   }
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.

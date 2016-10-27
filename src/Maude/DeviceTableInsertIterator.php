@@ -33,15 +33,4 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
     return;
   }
-  // TODO: This is just an idea of logging unsuccessful inserts.
-  public function valid() : bool
-  {
-      $bool = parent::valid();
-
-      if ($bool == false) {
-
-          // TODO: Log error. 'mdr_report_key... from table...could not be inserted.
-      }   
-
-      return $bool; 
 }

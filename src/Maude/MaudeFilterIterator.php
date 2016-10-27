@@ -16,7 +16,9 @@ class MaudeFilterIterator extends FilterIterator {
 
     public function accept() : bool
     {
-       return  call_user_func($this->functor, $this->current()); // Pass \Ds\Vector to functor.
+       $bRc =  call_user_func($this->functor, $this->current()); // Pass \Ds\Vector to functor. Returns bool
+       return $bRc;
     }
+ 
 }
 
