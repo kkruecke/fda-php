@@ -57,13 +57,11 @@ try {
             
       $dbIterator = new $dbIteratorName($pdo);
 
-      $cnt = 0; 
-  
       foreach ($filterIterator as $vec) {
 
          $dbIterator->insert($vec);
        
-         if ((++$cnt % 100) == 0) {
+         if (($dbIterator->getInsertCount() % 100) == 0) {
 
             echo $cnt . " lines inserted using " . $dbIteratorName . "\n";
          } 
