@@ -1,5 +1,12 @@
 1a. Restore config.xml from config.xml.orig
 
+2. There are loads of casts to int that do
+
+     (int) $x
+
+   This probably should be changed to intval($x) because only the first character might be getting converted to an int. Also we might be converting in instances
+   where we really shouldn't have to, due to some other error in logic. See these all need to be examined and redesigned.
+
 
 2. The Mdr...Functor seems to go in an infinite loop.
 

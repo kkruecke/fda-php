@@ -19,13 +19,11 @@ class MaudeRegexIterator extends \RegexIterator {
     {
         parent::__construct($spl_file_object_ex,  '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
 
-        $this->vector = new \Ds\Vector;  
-        
-        $cnt = \count($indecies);   
-
-        $this->vector->allocate($cnt);
-        
         $this->indecies = $indecies;
+        
+        $this->vector = new \Ds\Vector();
+        
+        $this->vector->allocate($indecies->count());
     } 
 
     public function current() : \Ds\Vector

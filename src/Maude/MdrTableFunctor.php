@@ -14,7 +14,12 @@ class MdrTableFunctor extends ExistsinDeviceTableFunctor {
      
      public function __invoke(\Ds\Vector $vector) : bool
      {
-         $mdr_report_key = (int) $vector[MdrTableFunctor::index_mdr_report_key];
+         $mdr_report_key = $vector[MdrTableFunctor::index_mdr_report_key];
+         
+         if ($mdr_report_key == 5053891) {
+             $debug = 10;
+             ++$debug;
+         }
 
 	 return parent::existsInDeviceTable($mdr_report_key);
      }
