@@ -1,5 +1,8 @@
 1a. Restore config.xml from config.xml.orig
 
-1. Log unsuccessful efforts to locate mdr and text rows in devicefoi.txt--if they have already been filtered as being lasik record? We would, if Mdr and Text functors
+
+2. The Mdr...Functor seems to go in an infinite loop.
+
+Should I log unsuccessful efforts to locate mdr and text rows in devicefoi.txt--if they have already been filtered as being lasik record? We would, if Mdr and Text functors
     __invoke() returns false, log this.
 
