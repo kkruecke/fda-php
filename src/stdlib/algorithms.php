@@ -1,10 +1,11 @@
 <?php
 /*
- * Iterative binary search algorithm
+ * Iterative binary $search algorithm
  */
 
-function binary_search(\Ds\Vector &$vector, $value) : bool
+function binary_search(\Ds\Vector &$vector, $search) : bool
 {
+/*
    $right = $vector->count() - 1;
 
    $left = 0;
@@ -20,5 +21,26 @@ function binary_search(\Ds\Vector &$vector, $value) : bool
       else return true;
    }
 
+   return false;
+*/
+   $first = 0;
+   $last = $vector->count() - 1;
+   
+   $middle = (int) floor(($first+$last)/2);
+ 
+   while ($first <= $last) {
+
+      if ($vector[$middle] < $search)
+         $first = $middle + 1;    
+
+      else if ($vector[$middle] == $search) {
+         //printf("%d found at location %d.\n", $search, $middle+1);
+         return true;
+      }
+      else
+         $last = $middle - 1;
+ 
+      $middle = (int) (floor($first + $last)/2);
+   }
    return false;
 }

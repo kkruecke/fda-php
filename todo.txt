@@ -1,13 +1,6 @@
 1a. Restore config.xml from config.xml.orig
 
-2. There are loads of casts to int that do
-
-     (int) $x
-
-   This probably should be changed to intval($x) because only the first character might be getting converted to an int. Also we might be casting to int in instances
-   where we really shouldn't have to, due to some other error in logic, like a pdo query returning a string values rather than ints. Underlying errors in design like
-   this all need to be examined and redesigned.
-
+ The mdr_report_keys in class MdrTableFunctor all wrong--they are all equal to 1.
 
 2. The Mdr...Functor seems to go in an infinite loop.
 

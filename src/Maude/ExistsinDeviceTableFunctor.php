@@ -26,6 +26,7 @@ abstract class ExistsinDeviceTableFunctor implements MaudeFunctor {
            foreach($stmt as $mdr_report_key) { // TODO: Does this return an int or a string?
 
                 $this->mdr_report_keys->insert($index++,  intval($mdr_report_key));        
+           }
         } 
      }
 
