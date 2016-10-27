@@ -61,6 +61,7 @@ abstract class AbstractMaudeLasikInsertIterator implements DatabaseTableInsertIt
      
   public function valid() : bool
   {
+     //TODO: Override in the devied class and call this parent method: parent::valide(). In derive clas, if parent::valid() is false, log the result to a file.
       return $this->valid; // This is the result of $this->stmt->execute()
   }
   

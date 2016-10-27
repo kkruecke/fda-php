@@ -1,40 +1,9 @@
-Create traits that have indecies, like the C++ code in the ~/fda/include/ headers. Something like
+TODO: Override in the devied class and call this parent method: parent::valide(). In derive clas, if parent::valid() is false, log the result to a file.
 
-DeviceTraits {
-  const seq_no =
-  const prod_code =
-  const mdr_report_key = 
-  const index_seq_no =
-  const index_prod_code_index =
-  const index_mdr_report_key = 
-}
-MdrTraits {
-}
-TextTraits {
-}
-
-The functor for the devicefoi table, to tell if we have a new record...it should do what the C++ code does:
-
-        
-    if (device_product_code != DeviceTable::HNO && device_product_code != DeviceTable::LZS) {
-        
-        return false;
-    }
-
-    // The latest sequence numbers the FDA uses are of the form 1.x 
-    float seq_no = std::stof(fields.at(to_int(VectorIndecies::seq_no))); //++
+AbstractMaudeLaiskInsertIterator { //...
  
-    // Test that the sequence number, from column 5 of the .txt file, is "1". We ignore all other sequence numbers as they have duplicate mdr report keys.
-    //--if ( seq_no != "1") {
-    if (seq_no != 1.0) {
-
-        return false;
-    }
-          
-    // It is new lasik-related that has not already been encountered?
-    return (mdr_report_key > max_mdr_report_key) ? true : false;
-
-NOTE: The functor is really acting like filter! Since we already have MaudeFilterIterator (which checks for LASIK records, the first test above), can we incorporate
-the sequence and greater-than test into it. This would mean adding a filter class to MaudeFilterIterator that would take the role of our functor classes, or maybe
-we can have functors with more state and that take more general parameter, like a \Ds\Vector say? There are several possibilites to explore.
-
+  public function valid() : bool
+  {
+      return $this->valid; // This is the result of $this->stmt->execute()
+  }
+}  
