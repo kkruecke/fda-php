@@ -1,14 +1,5 @@
 1a. Restore config.xml from config.xml.orig
 
-1. Maybe we should log unsuccessful efforts to locate mdr and text rows in devicefoi.txt? That is, Mdr and Text functors __invoke() returns false.
-   And then log this.
+1. Log unsuccessful efforts to locate mdr and text rows in devicefoi.txt--if they have already been filtered as being lasik record? We would, if Mdr and Text functors
+    __invoke() returns false, log this.
 
-2. Or we could override in the devied class and call this parent method: parent::valide(). In derive clas, if parent::valid() is false, log the result to a file.
-
-AbstractMaudeLaiskInsertIterator { //...
- 
-  public function valid() : bool
-  {
-      return $this->valid; // This is the result of $this->stmt->execute()
-  }
-}  
