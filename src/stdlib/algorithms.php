@@ -11,7 +11,7 @@ function binary_search(\Ds\Vector &$vector, $value) : bool
 
    while($right >= $left) {
 
-      $mid = floor(($right + $left) / 2);
+      $mid = (int) floor(($right + $left) / 2);
 
       if ($vector[$mid] < $value) $left = $mid + 1;
 
