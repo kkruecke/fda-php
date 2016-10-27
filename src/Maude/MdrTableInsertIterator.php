@@ -13,12 +13,13 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 	      (:mdr_report_key, :device_product_code )");
    }
 
-   public function bindParameters()
+  // Called from within parent::__construct()
+   public function bindParameters(\PDOStatement $insert_stmt)
    {
       // bind the parameters in each statement
-      $this->insert_stmt->bindParam(':mdr_report_key', $this->mdr_report_key, \PDO::PARAM_INT);
+      $insert_stmt->bindParam(':mdr_report_key', $this->mdr_report_key, \PDO::PARAM_INT);
         
-      $this->insert_stmt->bindParam(':device_product_code', $this->device_product_code, \PDO::PARAM_STR);
+      $insert_stmt->bindParam(':device_product_code', $this->device_product_code, \PDO::PARAM_STR);
    }
 
   protected function assignParameters(\Ds\Vector $vec) 
@@ -26,8 +27,5 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
     $this->mdr_report_key = (int) $vec[0];
     $this->device_product_code = (string) $vec[1];
   }
-
-  public function insert(\Ds\Vector $vec) {} 
-
 }
 ?>

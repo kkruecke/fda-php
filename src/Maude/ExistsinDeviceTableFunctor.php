@@ -1,5 +1,6 @@
 <?php
 namespace Maude;
+require_once("src/stdlib/algorithms.php");
 
 abstract class ExistsinDeviceTableFunctor implements MaudeFunctor {
 

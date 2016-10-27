@@ -26,6 +26,5 @@ class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
     $this->mdr_report_key = (int) $vec[0];
     $this->device_report_code = $vec[1];
   }
- 
 }
 ?>

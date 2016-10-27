@@ -1,6 +1,5 @@
 <?php
 namespace Maude;
-require_once("src/stdlib/algorithms.php");
 
 //class MdrTableFunctor implements MaudeFunctor {
 class MdrTableFunctor extends ExistsinDeviceTableFunctor {

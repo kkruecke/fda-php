@@ -16,6 +16,7 @@ class DeviceTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 	      (:mdr_report_key, :device_product_code )"); 
   }
 
+  // Called from within parent::__construct()
   protected function bindParameters(\PDOStatement $insert_stmt)
   {
       // bind the parameters in each statement
