@@ -1,3 +1,5 @@
+1a. Restore config.xml from config.xml.orig
+
 1. Maybe we should log unsuccessful efforts to locate mdr and text rows in devicefoi.txt? That is, Mdr and Text functors __invoke() returns false.
    And then log this.
 

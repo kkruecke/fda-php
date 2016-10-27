@@ -7,13 +7,6 @@
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="Maude\DeviceTableFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
-    <indecies>
-        <index field_name="mdr_report_key">0</index>
-        <index field_name="device_sequence_no">4</index>
-        <index field_name="device_report_product_code">25</index>
-    </indecies>
-    </file>
     <file name="data/mdrfoi.txt"  functor="Maude\MdrTableFunctor" dbinsert_iter="Maude\MdrTableInsertIterator">
     <indecies>
         <index field_name="mdr_report_key">0</index>

@@ -7,27 +7,27 @@
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="Maude\GreaterThanFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
+    <file name="data/foidev.txt" functor="Maude\DeviceTableFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
     <indecies>
-        <index>0</index>
-        <index>4</index>
-        <index>25</index>
+        <index field_name="mdr_report_key">0</index>
+        <index field_name="device_sequence_no">4</index>
+        <index field_name="device_report_product_code">25</index>
     </indecies>
     </file>
-    <file name="data/mdrfoi.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="Maude\MdrTableInsertIterator">
+    <file name="data/mdrfoi.txt"  functor="Maude\MdrTableFunctor" dbinsert_iter="Maude\MdrTableInsertIterator">
     <indecies>
-        <index>0</index>
-        <index>3</index>
-        <index>7</index>
+        <index field_name="mdr_report_key">0</index>
+        <index field_name="report_source_code">3</index>
+        <index field_name="date_received">7</index>
     </indecies>
     </file>
-    <file name="data/foitext.txt"  functor="Maude\ExistsInDeviceTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
+    <file name="data/foitext.txt"  functor="Maude\TextTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
     <indecies>
-        <index>0</index>
-        <index>1</index>
-        <index>2</index>
-	<index>3</index>
-        <index>5</index>
+        <index field_name="mdr_report_key">0</index>
+        <index field_name="text_key">1</index>
+        <index field_name="text_type_code">2</index>
+	<index field_name="patient_sequence_no">3</index>
+        <index field_name="text">5</index>
     </indecies>
     </file>
 </files>
