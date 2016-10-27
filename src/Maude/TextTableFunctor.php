@@ -1,6 +1,6 @@
 <?php
 namespace Maude;
-require_once("stdlib/algorithms.php");
+require_once("src/stdlib/algorithms.php");
 
 class TextTableFunctor implements MaudeFunctor {
 
