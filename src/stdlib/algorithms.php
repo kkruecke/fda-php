@@ -3,9 +3,9 @@
  * Iterative binary search algorithm
  */
 
-function binary_search(array &$array, $value) : bool
+function binary_search(\Ds\Vector &$vector, $value) : bool
 {
-   $right = sizeof($array) - 1;
+   $right = $vector->count() - 1;
 
    $left = 0;
 
@@ -13,9 +13,9 @@ function binary_search(array &$array, $value) : bool
 
       $mid = floor(($right + $left) / 2);
 
-      if ($array[$mid] < $value) $left = $mid + 1;
+      if ($vector[$mid] < $value) $left = $mid + 1;
 
-      elseif ($array[$mid] > $value) $right = $mid - 1;
+      elseif ($vector[$mid] > $value) $right = $mid - 1;
 
       else return true;
    }
