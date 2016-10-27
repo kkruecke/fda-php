@@ -2,14 +2,8 @@
 use Maude\Configuration,
 Maude\ExistsInDeviceFunctor,
 Maude\SplFileObjectExtended,
-Maude\DeviceTableInsertIterator,
-Maude\MdrTableInsertIterator,
-Maude\TextTableInsertIterator,
 Maude\MaudeRegexIterator,
-Maude\MaudeFilterIterator,
-Maude\MdrTableFunctor,
-Maude\DeviceTableFunctor,
-Maude\TextTableFunctor;
+Maude\MaudeFilterIterator;
  
 require_once("class_loader.php");
 

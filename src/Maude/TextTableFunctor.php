@@ -48,7 +48,7 @@ class TextTableFunctor implements MaudeFunctor {
  
         if ($count != 0) {
 
-           $this->mdr_report_keys->allocate($cnt);
+           $this->mdr_report_keys->allocate($count);
                       
            $stmt = $pdo->query("SELECT DISTINCT mdr_report_key from devicefoi ORDER BY mdr_report_key ASC");
 
