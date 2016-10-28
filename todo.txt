@@ -21,4 +21,7 @@
   #1 /home/kurt/public_html/new-fda/main.php(43): Maude\AbstractMaudeLasikInsertIterator->insert(Object(Ds\Vector))
   #2 {main}
   Error message is: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'text_report' cannot be null
-  kurt@kurt-QAL51:~/new$ gvim to
+
+
+The cause is that the regex expression does not return all six fields of the rows of the foitext.txt file. It only returns the first five and omits the 6th field,
+the text report itself.  Use RegexBuddy to correct ti debug the regex expression. This should fix the problem.
