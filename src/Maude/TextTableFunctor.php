@@ -25,10 +25,10 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
  */
      const mdr_report_key = 0;
      const text_type_code = 2;
-     const patient_seq_no = 3;
-
-     const TEXT_TYPE_CODE = 'D';
-     const PATIENT_SEQ_NO = '1';
+     const patient_sequence_no = 3;
+           
+     const TEXT_TYPE_CODE_REQD = 'D';
+     const PATIENT_SEQ_NO_REQD = '1';
 
      private  $mdr_report_keys;       // sorted \Ds\Vector
      private  $prior_mdr_report_key;  // TODO: Set this value appropriately
@@ -65,13 +65,13 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
     */
          $text_type_code = (string) $vector[TextTableFunctor::text_type_code];
 
-         $patient_seq_no = (string) $vector[TextTableFunctor::sequence_no];
+         $patient_seq_no = (string) $vector[TextTableFunctor::patient_sequence_no];
 
-         $must_be_true = (text_type_code[0] == TextTableFunctor::TEXT_TYPE_CODE && ($patient_seq_no[0] == TextTableFunctor::PATIENT_SEQ_NO || empty($patient_seq_no)));  
+         $must_be_true = ($text_type_code[0] == TextTableFunctor::TEXT_TYPE_CODE_REQD && ($patient_seq_no[0] == TextTableFunctor::PATIENT_SEQ_NO_REQD || empty($patient_seq_no)));  
 
          if (!$must_be_true) return false;
 
-         $mdr_report_key = intval( $vector[TextTableFunctor::mdr_report_key]);
+         $mdr_report_key = intval($vector[TextTableFunctor::mdr_report_key]);
 
          if ($mdr_report_key == $this->prior_mdr_report_key) {
 
