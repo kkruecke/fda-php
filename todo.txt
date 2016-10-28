@@ -1,6 +1,6 @@
 1. Restore config.xml from config.xml.orig
 
-2. This bug:  
+2. This current bug in the textfio.txt processing:  
 
   kurt@kurt-QAL51:~/new$ php -f main.php
 
@@ -22,7 +22,6 @@
   #2 {main}
   Error message is: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'text_report' cannot be null
 
-seems caused by the fact that the $vector that is passed to TextTableInsertIterator has all the fields from the textfoi.txt file, rather than just those specified
-in config.xml. This is what I think.
-
-I am not sure why this is only a problem for TextTableInsertIterator? Do the othe functors and/or inserter have a correctly sized vector?
+seems caused by the fact that the $vector passed by the MaudeFilterIterator/TextTableFunctor to TextTableInsertIterator has ever field from the textfoi.txt file
+rather than just those specified in config.xml. I'm not sure if the Device and Mdr functors/inserters work to save only those fields specified by
+the <indecies> section of their <file> section? But this is definitely the problem. 
