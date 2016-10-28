@@ -17,7 +17,8 @@ class MaudeRegexIterator extends \RegexIterator {
 
     public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indecies)
     {
-        parent::__construct($spl_file_object_ex, '/([^|]*)\||([^|]*)$/', RegexIterator::ALL_MATCHES);
+        //parent::__construct($spl_file_object_ex, '/([^|]*)\||([^|]*)$/', RegexIterator::ALL_MATCHES); original regex, which did not find text report from foitext.txt.
+        parent::__construct($spl_file_object_ex, '/(?:((?:[^|]*))(?:\||$)?)/', RegexIterator::ALL_MATCHES);
 
         $this->indecies = $indecies;
         
@@ -30,11 +31,11 @@ class MaudeRegexIterator extends \RegexIterator {
     {
       $array = parent::current();
       
-      $i = 0; 
+      $this->vector->clear();
 
       foreach ($this->indecies as $index) {
                     
-          $this->vector->insert($i++, $array[1][$index]); 
+         $this->vector[] = $array[1][$index]; 
       }
 
       return $this->vector;

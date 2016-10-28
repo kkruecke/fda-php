@@ -38,22 +38,14 @@ try {
             
       $dbIterator = new $dbIteratorName($pdo);
 
-      $cnt = 0; // debug
-
       foreach ($filterIterator as $vec) {
 
-        
-        echo "Read " . $cnt . " lines inserted using " . $tableFunctor . "\n";
-         
-
-         /*
          $dbIterator->insert($vec);
        
          if (($dbIterator->getInsertCount() % 100) == 0) {
 
             echo $dbIterator->getInsertCount() . " lines inserted using " . $dbIteratorName . "\n";
          } 
-         */
       }
   }
   

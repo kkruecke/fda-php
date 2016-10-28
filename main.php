@@ -37,15 +37,22 @@ try {
       $dbIteratorName  = (string) $file['dbinsert_iter'];
             
       $dbIterator = new $dbIteratorName($pdo);
-
+               
       foreach ($filterIterator as $vec) {
-
+      
+          /*          
+            echo "contents of read data by " . $tableFunctor . " in vector:\n";
+            print_r($vec);
+            $debug = 10;  
+          */
          $dbIterator->insert($vec);
-       
-         if (($dbIterator->getInsertCount() % 100) == 0) {
+
+         $cnt = $dbIterator->getInsertCount();
+
+         if ( $cnt > 0 && ($cnt % 100 == 0)) {
 
             echo $dbIterator->getInsertCount() . " lines inserted using " . $dbIteratorName . "\n";
-         } 
+         }
       }
   }
   

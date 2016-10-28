@@ -30,7 +30,7 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
      const TEXT_TYPE_CODE_REQD = 'D';
      const PATIENT_SEQ_NO_REQD = '1';
 
-     private  $mdr_report_keys;       // sorted \Ds\Vector
+     //--private  $mdr_report_keys;       // sorted \Ds\Vector
      private  $prior_mdr_report_key;  // TODO: Set this value appropriately
  
      public function __construct(\PDO $pdo)
@@ -71,7 +71,7 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
 
          if (!$must_be_true) return false;
 
-         $mdr_report_key = intval($vector[TextTableFunctor::mdr_report_key]);
+         $mdr_report_key =mdr_report_key intval($vector[TextTableFunctor::mdr_report_key]);
 
          if ($mdr_report_key == $this->prior_mdr_report_key) {
 
