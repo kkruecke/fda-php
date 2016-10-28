@@ -1,13 +1,11 @@
 <?php
 namespace Maude;
 
-//class MdrTableFunctor implements MaudeFunctor {
 class MdrTableFunctor extends ExistsinDeviceTableFunctor {
 
-     const mdr_report_key = 0; // This is the index in \Ds\Vector which contains all only the fields in a row of the mdrfoi.txt file that are specified by
-                                     // <indecies></indecies> section.
-     
-     private $prior_mdr_report_key; //debug
+     const mdr_report_key = 0; // 0 is the index in \Ds\Vector that contains the mdr report key     
+
+     private $prior_mdr_report_key; // TODO: Is this needed. Confer with C++ code.
 
      public function __construct(\PDO $pdo)
      {

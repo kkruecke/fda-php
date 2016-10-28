@@ -20,7 +20,7 @@ class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
       // bind the parameters in each statement
       $insert_stmt->bindParam(':mdr_report_key', $this->mdr_report_key, \PDO::PARAM_INT);
         
-      $insert_stmt->bindParam(':text_report', $this->device_product_code, \PDO::PARAM_STR);
+      $insert_stmt->bindParam(':text_report', $this->text_report, \PDO::PARAM_STR);
   }
 
   protected function assignParameters(\Ds\Vector $vec) 
