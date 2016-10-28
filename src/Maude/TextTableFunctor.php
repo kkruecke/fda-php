@@ -24,8 +24,8 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
    This functor will only examine the mdr_report_key, the text_type_code and the patient_sequence_no.
  */
      const mdr_report_key = 0;
-     const text_type_code = 2:
-     const patient_seq_no = 3:
+     const text_type_code = 2;
+     const patient_seq_no = 3;
 
      const TEXT_TYPE_CODE = 'D';
      const PATIENT_SEQ_NO = '1';
@@ -78,7 +78,7 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
              return false;
          }
          
-         if ( parent::existsInDeviceTable($mdr_report_key) {
+         if (parent::existsInDeviceTable($mdr_report_key)) {
 
                 $this->prior_mdr_report_key = $mdr_report_key;
                 return true;
