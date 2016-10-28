@@ -44,3 +44,19 @@ function binary_search(\Ds\Vector &$vector, $search) : bool
    }
    return false;
 }
+
+function bsearch_recursive(\Ds\Vector $vec, $value, int $low, int $high) : bool
+{
+    if($low > $high) return false;
+
+    $mid = intval(floor((low + $high)/2));
+
+    if($x < $vec[$mid])
+        return bsearch_recursive($vec, $value, $low, $mid - 1);
+
+    else if($value > $vec[$mid])
+        return bsearch_recursive($vec, $value, $mid + 1, $high);
+
+    else
+        return true; // $vec[$mid];
+}

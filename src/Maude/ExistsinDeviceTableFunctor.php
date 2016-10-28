@@ -19,12 +19,16 @@ abstract class ExistsinDeviceTableFunctor implements MaudeFunctor {
 
            $this->mdr_report_keys->allocate($count);
                       
-           $stmt = $pdo->query("SELECT DISTINCT mdr_report_key from devicefoi ORDER BY mdr_report_key ASC", \PDO::FETCH_NUM);
-
+           $stmt = $pdo->prepare("SELECT mdr_report_key from devicefoi ORDER BY mdr_report_key ASC");
+                      
+           $stmt->execute();
+           
+           $stmt->bindColumn(1, $mdr_report_key);
+           
            $index = 0;
            
-           foreach($stmt as $mdr_report_key) { // TODO: Does this return an int or a string?
-
+           while ($stmt->fetch(\PDO::FETCH_BOUND)) {   
+                          
                 $this->mdr_report_keys->insert($index++,  intval($mdr_report_key));        
            }
         } 
