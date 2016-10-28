@@ -40,11 +40,6 @@ try {
                
       foreach ($filterIterator as $vec) {
       
-          /*          
-            echo "contents of read data by " . $tableFunctor . " in vector:\n";
-            print_r($vec);
-            $debug = 10;  
-          */
          $dbIterator->insert($vec);
 
          $cnt = $dbIterator->getInsertCount();
