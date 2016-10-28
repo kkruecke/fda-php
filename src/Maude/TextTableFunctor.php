@@ -30,8 +30,7 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
      const TEXT_TYPE_CODE_REQD = 'D';
      const PATIENT_SEQ_NO_REQD = '1';
 
-     //--private  $mdr_report_keys;       // sorted \Ds\Vector
-     private  $prior_mdr_report_key;  // TODO: Set this value appropriately
+     private  $prior_mdr_report_key;  // TODO: check whether this is need. Does C++ code do this?
  
      public function __construct(\PDO $pdo)
      {
