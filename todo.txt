@@ -2,15 +2,4 @@
 
  The mdr_report_keys in class MdrTableFunctor all wrong--they are all equal to 1.
 
-2. It would seem duplicates are trying to be being inserted into the mdrfoi table:
-
-  Exception Thrown in /home/kurt/public_html/new-fda/src/Maude/AbstractMaudeLasikInsertIterator.php at line 81
-  Stack Trace as string:
-  #0 /home/kurt/public_html/new-fda/src/Maude/AbstractMaudeLasikInsertIterator.php(81): PDOStatement->execute()
-  #1 /home/kurt/public_html/new-fda/main.php(41): Maude\AbstractMaudeLasikInsertIterator->insert(Object(Ds\Vector))
-  #2 {main}
-  Error message is: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '5053546' for key 'PRIMARY'
-  Done.
-
-However, this error occurs even when the initialy value is inserted into the table. So maybe I have the wrong table name?
-Isn't the prior key that was inserted saved?
+2. Debugging MDR table insersion logic. 
