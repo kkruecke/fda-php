@@ -29,7 +29,8 @@ abstract class ExistsinDeviceTableFunctor implements MaudeFunctor {
            
            while ($stmt->fetch(\PDO::FETCH_BOUND)) {   
                           
-                $this->mdr_report_keys->insert($index++,  intval($mdr_report_key));        
+                //$this->mdr_report_keys->insert($index++,  intval($mdr_report_key));        
+                $this->mdr_report_keys[] = intval($mdr_report_key);        
            }
         } 
      }
