@@ -17,7 +17,7 @@ class MaudeRegexIterator extends \RegexIterator {
 
     public function __construct(SplFileObjectExtended $spl_file_object_ex, \Ds\Vector $indecies)
     {
-        parent::__construct($spl_file_object_ex,  '/([^|]*)\||\1$/', RegexIterator::ALL_MATCHES);
+        parent::__construct($spl_file_object_ex, '/([^|]*)\||([^|]*)$/', RegexIterator::ALL_MATCHES);
 
         $this->indecies = $indecies;
         
