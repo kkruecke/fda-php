@@ -71,7 +71,7 @@ class TextTableFunctor  extends ExistsinDeviceTableFunctor {
 
          if (!$must_be_true) return false;
 
-         $mdr_report_key =mdr_report_key intval($vector[TextTableFunctor::mdr_report_key]);
+         $mdr_report_key = intval($vector[TextTableFunctor::mdr_report_key]);
 
          if ($mdr_report_key == $this->prior_mdr_report_key) {
 

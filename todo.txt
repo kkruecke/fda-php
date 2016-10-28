@@ -1,7 +1,6 @@
 1. Restore config.xml from config.xml.orig
-3. Restore main.php.orig to main.php
 
-4. Debug TextTabeXXX bug: 
+2. This bug:  
 
   kurt@kurt-QAL51:~/new$ php -f main.php
 
@@ -23,39 +22,7 @@
   #2 {main}
   Error message is: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'text_report' cannot be null
 
+seems caused by the fact that the $vector that is passed to TextTableInsertIterator has all the fields from the textfoi.txt file, rather than just those specified
+in config.xml. This is what I think.
 
-The cause is that the regex expression does not return all six fields of the rows of the foitext.txt file. It only returns the first five and omits the 6th field,
-the text report itself.  Use RegexBuddy to debug the regex expression.  Look into greedy vs non-greedy captures, too. See ~/temp/test.php:
-
-<?php
-require_once("SplFileObjectExtended.php");
-
- $subject = <<<EOD
-5053546|24931449|N|1||THIS COMPLAINT IS STILL UNDER INVESTIGATION. DEPUY WILL NOTIFY THE FDA OF THE RESULTS OF THIS INVESTIGATION ONCE IT HAS BEEN COMPLETED. (B)(4). IF INFORMATION IS OBTAINED THAT WAS NOT AVAILABLE FOR THE INITIAL MEDWATCH, A FOLLOW-UP MEDWATCH WILL BE FILED AS APPROPRIATE.
-5053546|24931450|D|1||PATIENT WAS REVISED TO ADDRESS PAIN.
-5053546|27567170|N|1||NO DEVICE ASSOCIATED WITH THIS REPORT WAS RECEIVED FOR EXAMINATION. A WORLDWIDE LOT SPECIFIC COMPLAINT DATABASE SEARCH, OR DEVICE HISTORY RECORD (DHR) REVIEW WAS NOT POSSIBLE BECAUSE THE REQUIRED LOT CODE(S) WAS NOT PROVIDED. BASED ON PREVIOUS INVESTIGATIONS THIS COMPLICATION OF JOINT REPLACEMENT IS UNLIKELY TO HAVE BEEN THE RESULT OF A DEVICE FAILING TO MEET REQUIRED SPECIFICATIONS. THE INFORMATION RECEIVED WILL BE RETAINED FOR POTENTIAL SERIES INVESTIGATIONS IF TRIGGERED BY TREND ANALYSIS, POST MARKET SURVEILLANCE, OR OTHER EVENTS WITHIN THE QUALITY SYSTEM. CORRECTIVE ACTION WAS NOT INDICATED. DEPUY CONSIDERS THE INVESTIGATION CLOSED AT THIS TIME. SHOULD ADDITIONAL INFORMATION BE RECEIVED, THE INFORMATION WILL BE REVIEWED AND THE INVESTIGATION WILL BE RE-OPENED AS NECESSARY.
-EOD;
-
- $file = new SplFileObjectExtended("./text.txt");
-
- foreach($file as $line) {
-
-    $rc = preg_match_all('/([^|]*)\||([^|]*)$/', $subject, $matches);
-    print_r($matches);
- }
-  // non-greedy
- foreach($file as $line) {
-
-    $rc = preg_match_all('/([^|]*?)\||([^|]*?)$/', $subject, $matches);
-    print_r($matches);
- }
-/* 
-  ) {
-
-    echo "preg_match succeeded.\n"; 
-
- } else {
-
-    echo "preg_match failed.\n";
- }
-*/
+I am not sure why this is only a problem for TextTableInsertIterator? Do the othe functors and/or inserter have a correctly sized vector?
