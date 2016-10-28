@@ -1,5 +1,24 @@
-1a. Restore config.xml from config.xml.orig
+1. Restore config.xml from config.xml.orig
 
- The mdr_report_keys in class MdrTableFunctor all wrong--they are all equal to 1.
+2. Debug TextTabeXXX bug: 
 
-2. Debugging MDR table insersion logic. 
+  kurt@kurt-QAL51:~/new$ php -f main.php
+
+  PHP Notice:  Undefined offset: 5 in /home/kurt/public_html/new-fda/src/Maude/MaudeRegexIterator.php on line 37
+  PHP Stack trace:
+  PHP   1. {main}() /home/kurt/public_html/new-fda/main.php:0
+  PHP   2. FilterIterator->rewind() /home/kurt/public_html/new-fda/main.php:41
+  PHP   3. Maude\MaudeRegexIterator->current() /home/kurt/public_html/new-fda/main.php:41
+  PHP Notice:  Undefined offset: 5 in /home/kurt/public_html/new-fda/src/Maude/MaudeRegexIterator.php on line 37
+  PHP Stack trace:
+  PHP   1. {main}() /home/kurt/public_html/new-fda/main.php:0
+  PHP   2. FilterIterator->rewind() /home/kurt/public_html/new-fda/main.php:41
+  PHP   3. Maude\MaudeRegexIterator->current() /home/kurt/public_html/new-fda/main.php:41
+  
+  Exception Thrown in /home/kurt/public_html/new-fda/src/Maude/AbstractMaudeLasikInsertIterator.php at line 81
+  Stack Trace as string:
+  #0 /home/kurt/public_html/new-fda/src/Maude/AbstractMaudeLasikInsertIterator.php(81): PDOStatement->execute()
+  #1 /home/kurt/public_html/new-fda/main.php(43): Maude\AbstractMaudeLasikInsertIterator->insert(Object(Ds\Vector))
+  #2 {main}
+  Error message is: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'text_report' cannot be null
+  kurt@kurt-QAL51:~/new$ gvim to
