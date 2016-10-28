@@ -9,7 +9,7 @@ class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
   public function __construct(\PDO $pdo_in) 
   {
-      parent::__construct($pdo_in, "INSERT INTO foitext(mdr_report_key, text_report) values (:mdr_report_key, :text_report)");
+      parent::__construct($pdo_in, "INSERT INTO textfoi(mdr_report_key, text_report) values (:mdr_report_key, :text_report)");
   }
 
   protected function bindParameters(\PDOStatement $insert_stmt)
