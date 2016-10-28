@@ -2,7 +2,7 @@
 <configuration>
 <database>
   <host>localhost</host>
-  <name>medwatch_redux</name>
+  <name>medwatch_latest</name>
   <user>kurt</user>
   <password>kk0457</password>
 </database>

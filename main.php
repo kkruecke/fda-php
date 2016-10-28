@@ -53,7 +53,9 @@ try {
   
   $pdo->commit();
 
-  // TODO: Add code to insert new Maude tables data into medwatch_report table.
+// TODO: Add code to insert new Maude tables data into medwatch_report table.
+include ("new-medwatch-update.php");
+  update_medwatch_report()
 
 } catch (Exception $e) {
 
