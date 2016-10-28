@@ -14,14 +14,5 @@
         <index field_name="date_received">7</index>
     </indecies>
     </file>
-    <file name="data/foitext.txt"  functor="Maude\TextTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
-    <indecies>
-        <index field_name="mdr_report_key">0</index>
-        <index field_name="text_key">1</index>
-        <index field_name="text_type_code">2</index>
-	<index field_name="patient_sequence_no">3</index>
-        <index field_name="text">5</index>
-    </indecies>
-    </file>
 </files>
 </configuration>

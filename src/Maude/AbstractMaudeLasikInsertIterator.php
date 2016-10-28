@@ -86,7 +86,6 @@ abstract class AbstractMaudeLasikInsertIterator implements DatabaseTableInsertIt
        } 
        
        return $this->valid;
-              
   }
 }
 ?>

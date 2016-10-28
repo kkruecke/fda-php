@@ -42,7 +42,7 @@ try {
        
          if (($dbIterator->getInsertCount() % 100) == 0) {
 
-            echo $cnt . " lines inserted using " . $dbIteratorName . "\n";
+            echo $dbIterator->getInsertCount() . " lines inserted using " . $dbIteratorName . "\n";
          } 
       }
   }

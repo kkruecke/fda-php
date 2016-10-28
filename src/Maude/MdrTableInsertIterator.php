@@ -10,8 +10,7 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
    public function __construct(\PDO $pdo)
    {
-       parent::__construct($pdo, "INSERT INTO mdrfoi(mdr_report_key, report_source_code, date_received) values
-	      (:mdr_report_key, :device_product_code, :date_received)");
+       parent::__construct($pdo, "INSERT INTO mdrfoi(mdr_report_key, report_source_code, date_received) values (:mdr_report_key, :device_product_code, :date_received)");
    }
 
   // Called from within parent::__construct()
@@ -32,7 +31,8 @@ class MdrTableInsertIterator extends AbstractMaudeLasikInsertIterator {
     
     $date_array = explode('/', (string) $vec[2]);  
     
-    $this->date_received = $date_array[2] . '-' . $date_array[1] . '-' . $date_array[0];
+    $this->date_received = $date_array[2] . '-' . $date_array[0] . '-' . $date_array[1];
+    // echo "About to insert: mdr report key = ". $this->mdr_report_key . " dev. prod. code = " . $this->device_product_code . " date recv'd = ". $this->date_received . "\n";
   }
 }
 ?>
