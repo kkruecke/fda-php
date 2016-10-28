@@ -19,6 +19,8 @@ try {
                          $db->user, $db->password);  
    
    $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
+   
+   $pdo->beginTransaction();
     
    foreach($config->getFiles()->file as $file) {
        
@@ -46,6 +48,8 @@ try {
          } 
       }
   }
+  
+  $pdo->commit();
 
   // TODO: Add code to insert new Maude tables data into medwatch_report table.
 
