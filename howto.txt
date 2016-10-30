@@ -4,48 +4,22 @@ Overview of How the Process Works
 Make Requirments
 ----------------
 
-Librarires
+Extensions
 ~~~~~~~~~~
 
-1. Download rapidxml C++ library. Add its path to the project include directories or put it in subfolder of ./include.
+The code uses the PHP Ds extension described at http://php.net/manual/en/ds.installation.php and https://github.com/php-ds/extension/blob/master/README.md.
 
-2. Install MySQL C++ Connector dynamic link library and C++ development pacakge that has headers and the mysql connector static library
+Note: To enable the extension on Ubuntu or Linux Mint, create the following file /etc/php/7.0/mods-available/ds.ini wit the contents of
 
-   $ sudo apt-get install libmysqlcppconn7v5 libmysqlcppconn-dev 
+    ; configuration for php ds module
+    ; priority=30
+    extension=ds.so 
 
-3. Install mysql and phpmyadmin
+Then do (on Linux Mint and Ubuntu):
 
-   $sudo apt-get install mysql-server phpmyadmin
+    $ sudo phpenmod ds
 
-   To prevent mysql from auto-starting:
-
-   $sudo systemdctl disable mysql.service -- on Ubuntu 16 and Mint 18
-
-   To stop, start, restart...
-   $sudo systemdctl mysql stop
-
-4. Download Maude foi files: mdrfoi, devfoi, textfoi. 
-
-   http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/PostmarketRequirements/ReportingAdverseEvents/ucm127891.htm
-
-Note: To compile and build the libmysqlcppconn-dev and libmysqlcppconn7v5 from source do this:
-
- $ sudo apt-get build-dep mysql-connector-c++
- $ sudo apt-get source --compile mysql-connector-c++ 
-
- $ sudo apt-get purge libmysqlcppconn-dev
- $ sudo apt-get purge libmysqlcppconn7v5
-
- $ sudo apt-get install <the .debs built in the first two lines above>
-
-Then link with either the .so or .a (static) library. 
-
-Compiler and Linker flags
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Compile with "std=c++14" and link with either the static MySQL Connector library from libmysqlcppconn-dev or specify the /usr/lib/mysqlcppconn.so library in under
-Link options about Libraries. (Note: I also added the "Dynamic Libraries" option that I somehow got to from a button on the "Linker" dialog box in the Netbeans IDE.)
-
+Without doing this first, you will get: unable to load '/usr/lib/..../ds.so' undefined symbol json....'
 
 Comments from Matt K. on data files and how he extract Maude FDA Lasik information
 ----------------------------------------------------------------------------------
