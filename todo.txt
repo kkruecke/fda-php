@@ -1,1 +1,0 @@
-Add fixText() code for report text, and code to update medwatch_report.

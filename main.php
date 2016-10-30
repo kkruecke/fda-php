@@ -22,8 +22,8 @@ try {
    $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
    
    $pdo->beginTransaction();
-    
-   foreach($config->getFiles()->file as $file) {
+   
+    foreach($config->getFiles()->file as $file) {
        
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
