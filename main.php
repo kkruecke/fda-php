@@ -3,7 +3,8 @@ use Maude\Configuration,
 Maude\ExistsInDeviceFunctor,
 Maude\SplFileObjectExtended,
 Maude\MaudeRegexIterator,
-Maude\MaudeFilterIterator;
+Maude\MaudeFilterIterator,
+Maude\MedwatchTable;
  
 require_once("class_loader.php");
 
@@ -52,11 +53,14 @@ try {
   }
   
   $pdo->commit();
+  return;
+  
+  $medwatch_report = new MedwatchTable($pdo);
 
-// TODO: Add code to insert new Maude tables data into medwatch_report table.
-include ("new-medwatch-update.php");
-  update_medwatch_report()
+  $medwatch_report->insertMaudeData();
 
+  echo "The number of new rows inserted into medwatch_report = " . $medwatch_report->getInsertCnt() . "\n";  
+ 
 } catch (Exception $e) {
 
    $errors = "\nException Thrown in " . $e->getFile() . " at line " . $e->getLine() . "\n";

@@ -1,6 +1,7 @@
 <?php
 namespace Maude;
 use Iterator;
+require_once("src/stdlib/utilities.php");
 
 class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
 
@@ -26,7 +27,9 @@ class TextTableInsertIterator extends AbstractMaudeLasikInsertIterator {
   protected function assignParameters(\Ds\Vector $vec) 
   {
     $this->mdr_report_key = intval($vec[TextTableInsertIterator::mdr_report_key]);
-    $this->text_report = $vec[TextTableInsertIterator::text_report];
+
+    // Use the fixText() utility to correct the casingo the text.
+    $this->text_report = fixText($vec[TextTableInsertIterator::text_report]);
   }
 }
 ?>
