@@ -18,7 +18,7 @@ class MedwatchTable {
    private  $date_received;
    private  $report_source_code;
 
-   private  $insert_cnt; 
+   private  $insert_count; 
 
    public function __construct(\PDO $pdo_in)
    {
@@ -39,7 +39,7 @@ INSERT INTO medwatch_report(mdr_report_key, text_report, date_received, report_s
 :report_source_code )
 INSERT_QUERY;
 
-         $this->insert_cnt = 0;
+         $this->insert_count = 0;
     }
  
     public function insertMaudeData()
@@ -53,7 +53,7 @@ INSERT_QUERY;
 
     public function getInsertCnt() : int
     {
-       return $this->insert_cnt;
+       return $this->insert_count;
     }
 
     protected function bindInsertParameters(\PDOStatement $insert_stmt)
