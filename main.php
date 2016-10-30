@@ -53,7 +53,6 @@ try {
   }
   
   $pdo->commit();
-  return;
   
   $medwatch_report = new MedwatchTable($pdo);
 
