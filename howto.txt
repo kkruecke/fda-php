@@ -1,0 +1,221 @@
+Overview of How the Process Works
+=================================
+
+Make Requirments
+----------------
+
+Librarires
+~~~~~~~~~~
+
+1. Download rapidxml C++ library. Add its path to the project include directories or put it in subfolder of ./include.
+
+2. Install MySQL C++ Connector dynamic link library and C++ development pacakge that has headers and the mysql connector static library
+
+   $ sudo apt-get install libmysqlcppconn7v5 libmysqlcppconn-dev 
+
+3. Install mysql and phpmyadmin
+
+   $sudo apt-get install mysql-server phpmyadmin
+
+   To prevent mysql from auto-starting:
+
+   $sudo systemdctl disable mysql.service -- on Ubuntu 16 and Mint 18
+
+   To stop, start, restart...
+   $sudo systemdctl mysql stop
+
+4. Download Maude foi files: mdrfoi, devfoi, textfoi. 
+
+   http://www.fda.gov/MedicalDevices/DeviceRegulationandGuidance/PostmarketRequirements/ReportingAdverseEvents/ucm127891.htm
+
+Note: To compile and build the libmysqlcppconn-dev and libmysqlcppconn7v5 from source do this:
+
+ $ sudo apt-get build-dep mysql-connector-c++
+ $ sudo apt-get source --compile mysql-connector-c++ 
+
+ $ sudo apt-get purge libmysqlcppconn-dev
+ $ sudo apt-get purge libmysqlcppconn7v5
+
+ $ sudo apt-get install <the .debs built in the first two lines above>
+
+Then link with either the .so or .a (static) library. 
+
+Compiler and Linker flags
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Compile with "std=c++14" and link with either the static MySQL Connector library from libmysqlcppconn-dev or specify the /usr/lib/mysqlcppconn.so library in under
+Link options about Libraries. (Note: I also added the "Dynamic Libraries" option that I somehow got to from a button on the "Linker" dialog box in the Netbeans IDE.)
+
+
+Comments from Matt K. on data files and how he extract Maude FDA Lasik information
+----------------------------------------------------------------------------------
+
+Hi Kurt - you'll see that the output file that I've provided to you in the past includes:
+
+1. file year
+2. mdr report key
+3. adverse events notes per review of text
+4. text long
+
+The data above was for voluntary patient reports only so we need to be able to identify those reports. Here's the steps to do it.
+
+1. The common field link between the device file, the mdrfoi file, and text file is Mdr Report Key
+
+2. From the Device File you need fields
+   #1 - MDR Report Key
+  #26 - Device Report Product Codes for codes of "HNO" or "LZS" (those are the laser product codes)
+
+3. From the MDRFOI File, you need fields:
+   #1 MDR Report Key,
+   #4 - Report Source Code (i.e. patient reports are typically "P"-voluntary reports) and
+  #12 - Date of Event (from the date of event, you'll ultimately get the file year)
+
+4. From the Text File, you need field #1 MDR Report Key and field #6 Text
+
+The steps I've used in the past are as follows:
+
+1. Relate the tables on the common field Mdr Report Key to bring in the required fields from the 3 tables.
+2. Remove all device report product codes not equal to HNO or LZS
+3. Create a File Year based on the #12-Date of Event
+4. The #3 AE notes from the output file above is a manual process after export of the FDA MAUDE files and reading the text to categorize whether each filing
+   is for dry eyes, NVD, ectasia, etc.
+
+Kurt's summary of What is Do Programmatically to Accomplish the Above
+---------------------------------------------------------------------
+
+ From foidev file we extract these fields:
+
+   #1. MDR report key
+  #26. Device Report Product Code equal to "HNO" or "LZS". These are the laser product codes.
+
+I just take the first HNO or LZS record found. Save this in foi_device.
+
+ From the mdrfoi file take these fields
+
+   #1. MDR report key
+   #4. Report Source Code
+  #12. Date of Event
+
+ save this in mdr_foi. Eliminate duplicate rows from it.
+ 
+ From the foitext file take
+
+   #1. MDR Report Key
+   #6. Text
+
+save this in foi_text.
+
+Steps I Use
+-----------
+
+1. Manually create a copy of the up-to-date medwatch database. Leave the original as a backup. We will insert all new lasik reports into the new copy.
+
+2. Use maude.sql to create temporary tables to hold the new lasik records that we find in maude .txt files
+
+    1. foidevice
+    2. foimdr
+    3. foitext
+
+    CREATE TABLE IF NOT EXISTS devicefoi (
+      mdr_report_key bigint NOT NULL,
+      device_product_code CHAR(3) NOT NULL, 
+      PRIMARY KEY (mdr_report_key)
+    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+    
+    
+    CREATE TABLE IF NOT EXISTS mdrfoi (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      mdr_report_key bigint NOT NULL,
+      report_source_code char(1) NOT NULL,
+      date_received date NOT NULL,
+      PRIMARY KEY (id),
+      UNIQUE KEY(mdr_report_key),
+      FOREIGN KEY (mdr_report_key) REFERENCES devicefoi(mdr_report_key) ON DELETE CASCADE
+    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+    
+    CREATE TABLE IF NOT EXISTS textfoi (
+      id int(11) NOT NULL AUTO_INCREMENT,
+      mdr_report_key bigint NOT NULL,
+      text_report longtext NOT NULL,
+      PRIMARY KEY (id),
+      UNIQUE KEY(mdr_report_key),
+      FOREIGN KEY (mdr_report_key) REFERENCES devicefoi(mdr_report_key) ON DELETE CASCADE
+    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+        
+3. Steps for manually preparing the maude .txt files
+
+    1. After downloading files. Convert each to linux format; for example
+    
+          $ dos2unix foidevxxx.txt  (for each file)
+    
+    2. Then edit and remove the first line, the column header.
+    
+    3. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
+       for example,
+    
+          cat foidevxxx1.txt foidevxxx2 ... > foidev.txt
+    
+       or
+    
+          cat foidevAdd.txt >> foidev.txt 
+        
+    4. Remove column header first line from the file if not already done in #2.
+    
+    5. Sort the file numberically on the first column, and then use that result to remove duplicate adjacent rows:
+    
+        sort -t"|" -n -k 1 devicefoi.txt | uniq > foidev-nodups.txt 
+    
+    6. Confirm there are no duplicates. Note: -d only prints duplicate lines.
+    
+        sort -t"|" -n -k 1 devicefoi.txt | uniq -d    
+    
+    Note: To display only certain columns after sorting, do
+    
+        sort -t"|" -n -k 1 devicefoi.txt | cut -d'|' -f1 | more
+    
+4. If the .txt files contain a lot of old data that already exists in the medwatch table, we can be be manually remove this redundant data by
+    
+        1. First determing the max(medwatch.mdr_report_key) in the current medwatch table.
+    
+          $ mysql -u root -p -D maude_working
+          $ select max(mdr_report_key) as max from medwatch_report;
+    
+        2. Then manually deleting those row whose MDR REPORT KEY is less than this max value.
+    
+5. Run fda-maude-cpp.  
+
+TODO: Is the below correct?
+ANSWER: Reread the code.
+
+    It will  first read the medwatch database to get its mdr_report_key's. We then read the exported maude .txt files prepared in step #3, in this order:
+
+    1. foidev.txt
+    2. mdrfoi.txt
+    3. foitext.txt
+    
+    and insert any new lasik reports into these tables. After this main read loop completes and the tables populated, we join these tables, and insert the join result as
+    new rows into the medwatch_report table. 
+
+Inset on Parsing
+~~~~~~~~~~~~~~~~
+    
+The parsing of each file works like this:
+
+1. Parses foidev.txt looking for Device Product Codes equal to "HNO" or "LSZ", excimer lasik or microkeratome records. Compares the MDR Report Key's of this row
+   with the max(mdr_report_key) from the medwatch_report table. Writes the MDR Report Key and Device Product Code to the foidevice table if its MDR Report Key
+   is greater than the max found above. 
+
+2. Parses mdrfoi.txt file extracting the fields
+
+   1.) MDR Report Key
+   2.) Report Source Code (i.e. patient reports are typically "P"-voluntary reports)
+   3.) Date of Event. 
+
+   If the MDR Report Key was inserted in step #3 and therefore exists in the foidevice.txt table, save these three fields to the mdrfoi table.
+
+3. Parse the foitext.txt file and extract the MDR Report Key and Text Report fields. Again, if the MDR Report Key is in the foidevice table (as well as the mdrfoi
+   table), write these two fields to the foitext table, checking first that they have not already been inserted.
+
+5. Join the results of these three tables and insert the result into the medwatch_report table.
+
+6. The temporary device, mdr and text tables can now be deleted.
