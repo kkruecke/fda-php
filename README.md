@@ -16,6 +16,10 @@ before enabling it (on Linux Mint and Ubuntu): `$ sudo phpenmod ds`. Without edi
 
 > unable to load '/usr/lib/..../ds.so' undefined symbol json....'
 
+It is also recommended to install a compatilbility polyfill 
+
+> composer require php-ds/php-ds    
+
 Comments
 --------
 
