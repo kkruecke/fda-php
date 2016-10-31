@@ -40,5 +40,6 @@ then remove duplicates:
     $ mv foitext-nodups.txt foitext.txt 
 
 Next edit the **confg.xml** file as needed with the correct .txt file name. The only other settings in config.xml that need to be customized are the database
-settings.
+settings. 
 
+See howto.txt for more details.

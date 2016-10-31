@@ -127,48 +127,40 @@ Steps I Use
     3. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
        for example,
     
-          cat foidevxxx1.txt foidevxxx2 ... > foidev.txt
+          cat foidevxxx1.txt foidevxxx2 ... > devicefoi.txt
     
        or
     
-          cat foidevAdd.txt >> foidev.txt 
+          cat foidevAdd.txt >> devicefoi.txt 
         
     4. Remove column header first line from the file if not already done in #2.
     
     5. Sort the file numberically on the first column, and then use that result to remove duplicate adjacent rows:
     
-        sort -t"|" -n -k 1 devicefoi.txt | uniq > foidev-nodups.txt 
+        sort -t"|" -n -k 1 devicefoi.txt | uniq > devicefoi-nodups.txt 
     
     6. Confirm there are no duplicates. Note: -d only prints duplicate lines.
     
-        sort -t"|" -n -k 1 devicefoi.txt | uniq -d    
+        sort -t"|" -n -k 1 devicefoi-nodups.txt | uniq -d    
     
     Note: To display only certain columns after sorting, do
     
         sort -t"|" -n -k 1 devicefoi.txt | cut -d'|' -f1 | more
+
+    7. After confirming there are no duplicates, rename the file
+
+       mv devicefoi-nodups.txt  devicefoi.txt
     
-4. If the .txt files contain a lot of old data that already exists in the medwatch table, we can be be manually remove this redundant data by
+4. If the above .txt files contain a lot of old data that already exists in the medwatch table, we can be be manually remove this redundant data by
     
         1. First determing the max(medwatch.mdr_report_key) in the current medwatch table.
     
-          $ mysql -u root -p -D maude_working
+          $ mysql -u root -p -D maude_whatever
           $ select max(mdr_report_key) as max from medwatch_report;
     
         2. Then manually deleting those row whose MDR REPORT KEY is less than this max value.
     
-5. Run fda-maude-cpp.  
-
-TODO: Is the below correct?
-ANSWER: Reread the code.
-
-    It will  first read the medwatch database to get its mdr_report_key's. We then read the exported maude .txt files prepared in step #3, in this order:
-
-    1. foidev.txt
-    2. mdrfoi.txt
-    3. foitext.txt
-    
-    and insert any new lasik reports into these tables. After this main read loop completes and the tables populated, we join these tables, and insert the join result as
-    new rows into the medwatch_report table. 
+5. Run php -f main.php  
 
 Inset on Parsing
 ~~~~~~~~~~~~~~~~
@@ -192,4 +184,4 @@ The parsing of each file works like this:
 
 5. Join the results of these three tables and insert the result into the medwatch_report table.
 
-6. The temporary device, mdr and text tables can now be deleted.
+6. The temporary devicefoi, mdrfoi and textfoi tables can now be deleted.

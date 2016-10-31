@@ -36,11 +36,11 @@ CREATE TABLE IF NOT EXISTS `mdrfoi` (
   `report_source_code` CHAR(1) NOT NULL,
   `date_received` DATE NOT NULL,
   PRIMARY KEY (`id`),
--- field below was not initially unieuq
+-- field below was not initially unique
   UNIQUE (mdr_report_key)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS `foitext` (
+CREATE TABLE IF NOT EXISTS `textfoi` (
   id int(11) unsigned NOT NULL AUTO_INCREMENT,
   mdr_report_key int(11) unsigned NOT NULL,
   text_key int(11) unsigned NOT NULL,
