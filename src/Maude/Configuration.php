@@ -9,7 +9,6 @@ class Configuration {
     
     private static $database;  // SimpleXMLElement. Access members via -> syntax
     private static $files;     // SimpleXMLElement. Access members via -> syntax
-    private static $ConfigFiles;     // SimpleXMLElement. Access members via -> syntax
 
     protected function __construct(string $filename)
     {
@@ -37,7 +36,7 @@ class Configuration {
         return self::$files;
     }
     
-    public function getIndecies(ConfigFile $file) : \Ds\Vector 
+    public function getIndecies(\SimpleXMLElement $file) : \Ds\Vector 
     {
       $vec = new \Ds\Vector;
        
