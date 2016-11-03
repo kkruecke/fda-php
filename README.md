@@ -39,6 +39,7 @@ After downloading the respective .txt files:
 This can be done using the Linux command line. For example, below we concatenate to foixtextXXX.txt files, sort it by the first field, the mdr\_report\_key,
 then remove duplicates:
 
+    $ dos2unix *.txt
     $ cat foitext2015.txt >> foitext.txt
     $ sort -t'|' -k1 foitext.txt | uniq > foitext-nodups.txt
     $ mv foitext-nodups.txt foitext.txt 
