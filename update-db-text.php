@@ -19,12 +19,19 @@ function fixTitles($text) : string
    return $text; 
 }
 
-
    new \PDO(...)
-   
-   // read using database read iterator the current text.
 
-   // update the current text using the database write iterator.
+   // Read all Medwatch rows using database text reader iterator 
+   $db_text_reader = ...
+   $db_write_iterator = ...
+
+   foreach ($db_text_reader $text) {
+
+        $text = fixTitles($text); 
+
+        // update the current text using the database write iterator.
+        $db_write_iterator->write($text);
+   }
 
    
 
