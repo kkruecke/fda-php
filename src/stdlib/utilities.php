@@ -27,6 +27,21 @@ function fixText(string $text) : string
    //  Capitalize the pronoun ' i '
    $text = preg_replace('/\b(i)\b/', 'I', $text); 
 
+   // Capitalize titles
+   $patterns = array();
+   $patterns[0] = '/dr/';
+   $patterns[1] = '/mr/';
+   $patterns[2] = '/ms/';
+   $patterns[3] = '/mrs/';
+   
+   $replacements = array();
+   $replacements[0] = 'Dr';
+   $replacements[1] = 'Mr';
+   $replacements[2] = 'Ms';
+   $replacements[3] = 'Mrs';
+
+   $text = preg_replace($patterns, $replacements, $text); 
+  
    return $text; 
 }
 ?>

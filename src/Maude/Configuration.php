@@ -17,9 +17,6 @@ class Configuration {
 
     protected static function init(string $filename)
     {
-       if (empty($filename))
-               return;
-
        $config = simplexml_load_file($filename);
 
        self::$database = $config->database;
@@ -48,9 +45,9 @@ class Configuration {
        
          $vec->push(intval($index));
       }
+
       return $vec;
     }
-    
    
     public static function getConfiguration(string $file_name="") : Configuration
     {

@@ -24,17 +24,22 @@ try {
    $pdo->beginTransaction();
    
     foreach($config->getFiles()->file as $file) {
-       
+      
+      // 1. Compose a file filter iterators to read input file.
       $spl_file_object_extended =  new SplFileObjectExtended($file['name']);
 
       $indecies = $config->getIndecies($file);
-
-      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
       
+      // Filter SplFileObjectExtended results with a regular expression
+      $maudeFieldExtractor  = new MaudeRegexIterator($spl_file_object_extended, $indecies); 
+     
+      // Filter further the results with the custom table functor that decides if the record is already is in the DB. 
       $tableFunctor = (string) $file['functor'];
       
       $filterIterator = new MaudeFilterIterator($maudeFieldExtractor, new $tableFunctor($pdo));
-
+      
+      // 2. Create the output database insert iterator
+       
       $dbIteratorName  = (string) $file['dbinsert_iter'];
             
       $dbIterator = new $dbIteratorName($pdo);
