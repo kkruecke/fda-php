@@ -1,10 +1,2 @@
-Add to fixText() ability to change dr. making it Dr. Same with mr. and ms., etc.
+Run fixText() against current database.
 Change (b)(6) to something else, maybe ______, (omitted).
-
-Use this regex:
-
-\b\(?:dr)|(?:mr)|(?:ms)|(?:mrs)\.\b 
-
-which in php regex format becomes: 
-
-'/\b(?:dr)|(?:mr)|(?:ms)|(?:mrs)\.\b/'

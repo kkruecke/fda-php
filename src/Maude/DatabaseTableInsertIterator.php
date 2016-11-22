@@ -2,7 +2,7 @@
 namespace Maude;
 use \Iterator;
 
-interface DatabaseTableInsertIterator extends \Iterator { 
+interface DatabaseTableWriteIterator extends \Iterator { 
 
   public function next();
      
@@ -14,5 +14,9 @@ interface DatabaseTableInsertIterator extends \Iterator {
   
   public function key() : int;
 
-  public function insert(\Ds\Vector $vec) : bool;
+  /*
+    write() is more generic. It covers all DB changes--insertion, deletion, update.
+    The client needs to ensure that it doesn't do a select.
+   */
+  public function write(\Ds\Vector $vec) : bool;
 }

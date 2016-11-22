@@ -71,10 +71,10 @@ abstract class AbstractMaudeLasikInsertIterator implements DatabaseTableInsertIt
   }
 
   /* 
-   * insert() is a "template method" pattern that invokes the assignParameters, which derived classes must override to assign the parameters for the 
+   * write() is a "template method" pattern that invokes assignParameters(), which derived classes must override to assign the parameters for the 
    * prepared statement. 
    */
-  public function insert(\Ds\Vector $vec) : bool
+  public function write(\Ds\Vector $vec) : bool
   {
        $this->assignParameters($vec);       
     
