@@ -21,9 +21,25 @@ function fixTitles($text) : string
   
    return $text; 
 }
- 
-boot_strap();
 
+class MedwatchTextAndId {
+
+  private $stmt;
+
+ public:
+
+    public function __construct(\PDO $pdo)
+    {
+       $this->stmt = $pdo->query("SELECT id, text_report as text from medwatch_report"););
+       $this->stmt->setfetchMode(PDO::FETCH_NUM);
+    }
+
+    public function fetch()
+    {
+        return $this->stmt->fetch(); 
+    }
+}
+ 
 try {
    
    $pdo = new \PDO("mysql:host=localhost;dbname=medwatch_backup", "kurt", "kk0457");  
@@ -32,13 +48,7 @@ try {
    
    $pdo->beginTransaction();
 
-   $select_str = "SELECT id, text_report as text from medwatch_report"; 
-
    $update = "UPDATE medwatch_report set text_report=:text WHERE id=:id"; 
-
-   $selectStmt = $pdo->query($select_str);
-
-   $selectStmt->setfetchMode(PDO::FETCH_NUM);
 
    $preUpdate = $pdo->prepare($update);   
 
@@ -51,7 +61,9 @@ try {
 
    $counter = 0;
       
-   while($results = $selectStmt->fetch()) {
+   $medwatch = new MedwatchTextAndId();
+
+   while($results = $medwatch->fetch()) {
                 
         $id = $results[0];
  
