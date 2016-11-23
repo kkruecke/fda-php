@@ -1,4 +1,7 @@
 <?php
+
+require_once("class_loader.php");
+
 function fixTitles($text) : string
 {
    // Capitalize titles
@@ -18,21 +21,41 @@ function fixTitles($text) : string
   
    return $text; 
 }
+ 
+boot_strap();
 
-   new \PDO(...)
+try {
+   
+   $pdo = new \PDO("mysql:host=localhost;dbname=medwatch_backup", "kurt", "kk0457");  
+   
+   $pdo->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION ); 
+   
+   $pdo->beginTransaction();
 
-   // Read all Medwatch rows using database text reader iterator 
-   $db_text_reader = ...
-   $db_write_iterator = ...
+   $select = "SELECT id, :text_report as text from medwatch_report"; 
 
-   foreach ($db_text_reader $text) {
+   $update = "UPDATE medwatch_report VALUES(?,?) WHERE id=:id"; 
 
-        $text = fixTitles($text); 
+   $preSelect = $pdo->prepare($select);   
+
+   $preUpdate = $pdo->prepare($update);   
+
+   $id = -1;  // primary key
+   $text;     // report text
+
+   $preSelect->bindParameters( );
+   $preSelect->fetchMode();
+
+   $preUpdate->bindParameters( );
+   $preSelect->fetchMode();
+
+   foreach ($preSelect as $results) {
+
+        $id = $results['id'];
+ 
+        $text = fixTitles($results['text']); 
 
         // update the current text using the database write iterator.
-        $db_write_iterator->write($text);
+        $preUpdate->execute();
    }
-
-   
-
-
+}

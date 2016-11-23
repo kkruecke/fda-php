@@ -1,2 +1,3 @@
 Run fixText() against current database.
+
 Change (b)(6) to something else, maybe ______, (omitted).
