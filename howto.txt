@@ -118,6 +118,10 @@ Steps I Use
         
 3. Steps for manually preparing the maude .txt files
 
+    1. Remove control characters from txt files:
+
+       tr -cd '\11\12\15\40-\176' < file-with-binary-chars > clean-file
+
     1. After downloading files. Convert each to linux format; for example
     
           $ dos2unix foidevxxx.txt  (for each file)
