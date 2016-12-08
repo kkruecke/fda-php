@@ -11,10 +11,11 @@
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+create database if not exists maude;
 --
 -- Database: `maude`
 --
-use medwatch;
+use maude;
 -- --------------------------------------------------------
 
 -- 
@@ -57,8 +58,3 @@ CREATE TABLE IF NOT EXISTS `textfoi` (
 /* 4. Patient Sequence Number (from mdr_text table) */
 /* 5. Date Report (from mdr_text table) */
 /* 6. Text (B5, or H3 or H10 from mdr_text table) */
-
- 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

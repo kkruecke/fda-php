@@ -121,7 +121,11 @@ Steps I Use
     1. After downloading files. Convert each to linux format; for example
     
           $ dos2unix foidevxxx.txt  (for each file)
-    
+
+       Note: If does2unix finds binary control characters, remove them using vim like this:
+
+            :%s/\%x13/ /g
+ 
     2. Then edit and remove the first line, the column header.
     
     3. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
@@ -130,7 +134,6 @@ Steps I Use
           cat foidevxxx1.txt foidevxxx2 ... > devicefoi.txt
     
        or
-    
           cat foidevAdd.txt >> devicefoi.txt 
         
     4. Remove column header first line from the file if not already done in #2.
