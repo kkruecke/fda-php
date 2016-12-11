@@ -1,4 +1,7 @@
 <?php
+
+require_once "maude-arrays.php";
+
 function prep_file($file)
 {
     $parts = explode('.', $file);
@@ -45,21 +48,29 @@ function prep_file($file)
     exec ($rename);
 }
 
+function concat_all($input_file_mask, $output_file)
+{
+   echo "Concatenating $input_file_mask\n";   
+
+   // catenate all text files into one big files.
+   $cmd_concat = "cat $input_file_mask >> $output_file"); //foitext*.txt >> foitext-all.txt";
+
+   exec($cmd_concat);
+
+   echo "\n$output_file created.\n";
+
+}
+
 $foitext_files = array("foitext1996.txt", "foitext1997.txt", "foitext1998.txt", "foitext1999.txt", "foitext2000.txt", "foitext2001.txt", "foitext2002.txt", "foitext2003.txt", 
      "foitext2004.txt", "foitext2005.txt", "foitext2006.txt", "foitext2007.txt", "foitext2008.txt", "foitext2009.txt", "foitext2010.txt", "foitext2011.txt", 
      "foitext2012.txt", "foitext2013.txt", "foitext2014.txt", "foitext2015.txt", "foitextAdd.txt", "foitext.txt"); 
+
+// TODO: Add an outer that does mdr, device and text files.
 
    foreach($foitext_files as $x) {
 
       prep_file($x);      
    }
 
-   echo "Concatenating all foitext files.\n";   
-
-   // catenate all text files into one big files.
-   $cmd_concat = "cat foitext*.txt >> foitext-all.txt";
-
-   exec($cmd_concat);
-
-   echo "\nfoitext-all.txt created.\n";
+   concat_all("foitext*.txt", "foitext-all.txt");
 ?>
