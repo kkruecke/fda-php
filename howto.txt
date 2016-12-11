@@ -122,7 +122,7 @@ Steps I Use
 
        tr -cd '\11\12\15\40-\176' < file-with-binary-chars > clean-file
 
-    1. After downloading files. Convert each to linux format; for example
+    2. Convert each to linux format; for example
     
           $ dos2unix foidevxxx.txt  (for each file)
 
@@ -130,23 +130,23 @@ Steps I Use
 
             :%s/\%x13/ /g
  
-    2. Then edit and remove the first line, the column header.
+    3. Then edit and remove the first line, the column header.
     
-    3. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
+    4. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
        for example,
     
-          cat foidevxxx1.txt foidevxxx2 ... > devicefoi.txt
+          cat foidev*.txt >> foidev-all.txt
     
        or
-          cat foidevAdd.txt >> devicefoi.txt 
+          cat foidev*.txt >> devicefoi.txt 
         
-    4. Remove column header first line from the file if not already done in #2.
+    5. Remove column header first line from the file if not already done in #2.
     
-    5. Sort the file numberically on the first column, and then use that result to remove duplicate adjacent rows:
+    6. Sort the file numberically on the first column, and then use that result to remove duplicate adjacent rows:
     
-        sort -t"|" -n -k 1 devicefoi.txt | uniq > devicefoi-nodups.txt 
+        sort -t"|" -n -k 1 devicefoi.txt | uniq -u > devicefoi-nodups.txt 
     
-    6. Confirm there are no duplicates. Note: -d only prints duplicate lines.
+    7. Confirm there are no duplicates. Note: -d only prints duplicate lines.
     
         sort -t"|" -n -k 1 devicefoi-nodups.txt | uniq -d    
     
@@ -154,7 +154,7 @@ Steps I Use
     
         sort -t"|" -n -k 1 devicefoi.txt | cut -d'|' -f1 | more
 
-    7. After confirming there are no duplicates, rename the file
+    8. After confirming there are no duplicates, rename the file
 
        mv devicefoi-nodups.txt  devicefoi.txt
     
