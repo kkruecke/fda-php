@@ -61,15 +61,5 @@ $foitext_files = array("foitext1996.txt", "foitext1997.txt", "foitext1998.txt", 
 
    exec($cmd_concat);
 
-   echo("Sorting foitext-all.txt.\n");
-
-   // Sort result--just to be safe.
-   $cmd_sort = "sort -t\"|\" -n -k 1 foitext-all.txt > foitext-all-sorted.txt"; 
-
-   exec($cmd_sort); 
-
-   // Rename sorted file to original file
-   $rename = "mv foitext-all-sorted.txt foitext-all.txt";
-
-    exec ($rename);
+   echo "\nfoitext-all.txt created.\n";
 ?>
