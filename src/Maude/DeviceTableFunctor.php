@@ -37,11 +37,6 @@ class DeviceTableFunctor implements MaudeFunctor {
         }
         */
 
-       $cnt_stmt = $pdo->query("SELECT count(*) FROM medwatch_report");  <-- TODO: 
- 
-                                                         'SELECT count(*) FROM medwatch_report'
-                                                  as that is the table whose max(mdr_report_key) we check our current mdr_report_key against
-                                                                    
         $cnt_stmt = $pdo->query("SELECT count(*) FROM medwatch_report");  
 
         $count = (int) $cnt_stmt->fetchColumn(0); // TODO: The case shouldn't be need--right?

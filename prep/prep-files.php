@@ -53,7 +53,7 @@ function concat_all($input_file_mask, $output_file)
    echo "Concatenating $input_file_mask\n";   
 
    // catenate all text files into one big files.
-   $cmd_concat = "cat $input_file_mask >> $output_file"); //foitext*.txt >> foitext-all.txt";
+   $cmd_concat = "cat $input_file_mask >> $output_file"; //foitext*.txt >> foitext-all.txt";
 
    exec($cmd_concat);
 

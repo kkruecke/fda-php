@@ -2,7 +2,7 @@
 namespace Maude;
 use \Iterator;
 
-interface DatabaseTableWriteIterator extends \Iterator { 
+interface DatabaseTableInsertIterator extends \Iterator { 
 
   public function next();
      
