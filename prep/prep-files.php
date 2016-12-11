@@ -8,17 +8,12 @@ function prep_file($file)
 
     $clean_name = $parts[0] . "-clean" . ".$parts[1]";
 
-    $tr_cmd =  "tr -cd '\\11\\12\\15\\40-\\176'" . "< " . $file . " > " . $clean_name;
+    $tr_cmd =  "tr -cd '\\11\\12\\15\\40-\\176'" . "< " . $file . " | sponge $file";
 
     // 1. Remove control characters
     echo "Removing control characters from $file.\n";
  
     exec( $tr_cmd );
-
-    // Rename cleaned file to original file
-    $rename = "mv $clean_name $file";
-
-    exec ($rename);
 
     // 2. Do dos2unix
     echo "Doing dos2unix $file\n";
@@ -32,20 +27,18 @@ function prep_file($file)
 
     exec ($remove_1st); 
 
-   // sort and remove duplicate lines
-    $nodups_name = $parts[0] . "-nodups" . ".$parts[1]";
+    // sort $file
+    $cmd_sort =  "sort -t\"|\" -n -k 1 $file | sponge $file";
 
-    $cmd_remove_dups =  "sort -t\"|\" -n -k 1 $file | uniq -u > $nodups_name";
+    exec($cmd_sort);
+
+    // Remove duplicates
+    $cmd_remove_dups =  "uniq -u $file | sponge $file";
 
     // 3. Do dos2unix
     echo "Removing duplicate lines from $file.\n";
 
     exec($cmd_remove_dups);
-
-    // Rename nodups file to original file
-    $rename = "mv $nodups_name $file";
-
-    exec ($rename);
 }
 
 function concat_all($input_file_mask, $output_file)

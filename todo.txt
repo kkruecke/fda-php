@@ -1,5 +1,5 @@
 # TODO
 
-Seems like foidev.txt has a bad room since I am getting an offset error in MaudeRegexIterator line 37, which indexes an array.
+~/fda/prep/prep-files.php is not removing duplicate lines for some reason.
 
 Change (b)(6) to something else, maybe ______, (omitted).
