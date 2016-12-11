@@ -1,8 +1,5 @@
 # TODO
 
-1. Shouldn't DeviceTableFunctor look for the msax mdr_report_key in the medwatch.medwatch_report table not the transitory devicefoi table, which can
-   be deleted?
-
-2. Run fixText() against current database.
+Seems like foidev.txt has a bad room since I am getting an offset error in MaudeRegexIterator line 37, which indexes an array.
 
 Change (b)(6) to something else, maybe ______, (omitted).

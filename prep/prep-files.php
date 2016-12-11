@@ -11,7 +11,7 @@ function prep_file($file)
     $tr_cmd =  "tr -cd '\\11\\12\\15\\40-\\176'" . "< " . $file . " > " . $clean_name;
 
     // 1. Remove control characters
-    echo "Removing control characters.\n";
+    echo "Removing control characters from $file.\n";
  
     exec( $tr_cmd );
 
@@ -25,7 +25,7 @@ function prep_file($file)
 
     $dos2unix_cmd = "dos2unix $file";
 
-    echo "Removing first line header.\n";
+    echo "Removing first line header from $file.\n";
 
     // 3. Remove first line of file
     $remove_1st =  "tail -n +2 $file | sponge $file";
@@ -38,7 +38,7 @@ function prep_file($file)
     $cmd_remove_dups =  "sort -t\"|\" -n -k 1 $file | uniq -u > $nodups_name";
 
     // 3. Do dos2unix
-    echo "Removing duplicate lines.\n";
+    echo "Removing duplicate lines from $file.\n";
 
     exec($cmd_remove_dups);
 
@@ -61,16 +61,15 @@ function concat_all($input_file_mask, $output_file)
 
 }
 
-$foitext_files = array("foitext1996.txt", "foitext1997.txt", "foitext1998.txt", "foitext1999.txt", "foitext2000.txt", "foitext2001.txt", "foitext2002.txt", "foitext2003.txt", 
-     "foitext2004.txt", "foitext2005.txt", "foitext2006.txt", "foitext2007.txt", "foitext2008.txt", "foitext2009.txt", "foitext2010.txt", "foitext2011.txt", 
-     "foitext2012.txt", "foitext2013.txt", "foitext2014.txt", "foitext2015.txt", "foitextAdd.txt", "foitext.txt"); 
+ foreach($arrays as $current_array) {
 
-// TODO: Add an outer that does mdr, device and text files.
+   foreach($current_array as $file) {
 
-   foreach($foitext_files as $x) {
-
-      prep_file($x);      
+      prep_file($file);      
    }
+ }
 
+   concat_all("foidev*.txt", "foidev-all.txt");
+   concat_all("mdrfoi*.txt", "mdrfoi-all.txt");
    concat_all("foitext*.txt", "foitext-all.txt");
 ?>

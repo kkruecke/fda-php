@@ -26,18 +26,17 @@ class MedwatchTextAndId {
 
   private $stmt;
 
- public:
 
-    public function __construct(\PDO $pdo)
-    {
-       $this->stmt = $pdo->query("SELECT id, text_report as text from medwatch_report"););
-       $this->stmt->setfetchMode(PDO::FETCH_NUM);
-    }
+  public function __construct(\PDO $pdo)
+  {
+      $this->stmt = $pdo->query("SELECT id, text_report as text from medwatch_report");
+      $this->stmt->setfetchMode(PDO::FETCH_NUM);
+  }
 
-    public function fetch()
-    {
-        return $this->stmt->fetch(); 
-    }
+  public function fetch()
+  {
+      return $this->stmt->fetch(); 
+  }
 }
  
 try {

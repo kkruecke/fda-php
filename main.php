@@ -46,7 +46,7 @@ try {
                
       foreach ($filterIterator as $vec) {
       
-         $dbIterator->insert($vec);
+         $dbIterator->write($vec);
 
          $cnt = $dbIterator->getInsertCount();
 
@@ -56,7 +56,8 @@ try {
          }
       }
   }
-  
+
+  echo "Commiting database changes (if any).\n";
   $pdo->commit();
   
   $medwatch_report = new MedwatchTable($pdo);

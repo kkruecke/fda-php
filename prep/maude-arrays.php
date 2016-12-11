@@ -2,12 +2,11 @@
 // This file is included in prep-files.php. It is self explanatory
 
 // Edit and add the array values.
-$device = array( );  // foidevxxx.txt files
-$mdr = array( );     // mdrfoixxx.txt files
-$text = array( );    // foitextxxx.txt fo;es
+$device = array("foidevAdd.txt", "foidev.txt"); 
+$mdr = array("mdrfoiAdd.txt", "mdrfoi.txt"); 
+$text = array("foitextAdd.txt", "foitext.txt"); 
 
 $arrays[] = $device;
 $arrays[] = $mdr;
 $arrays[] = $text;
-
 ?>
