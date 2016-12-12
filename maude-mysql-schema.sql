@@ -43,8 +43,6 @@ CREATE TABLE IF NOT EXISTS `mdrfoi` (
 CREATE TABLE IF NOT EXISTS `textfoi` (
   id int(11) unsigned NOT NULL AUTO_INCREMENT,
   mdr_report_key int(11) unsigned NOT NULL,
-  text_type_code CHAR(1) NOT NULL,
-  event_date DATE,
   text_report TEXT,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
