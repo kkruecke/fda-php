@@ -117,47 +117,9 @@ Steps I Use
     ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
         
 3. Steps for manually preparing the maude .txt files
-
-    1. Remove control characters from txt files:
-
-       tr -cd '\11\12\15\40-\176' < file-with-binary-chars > clean-file
-
-    2. Convert each to linux format; for example
     
-          $ dos2unix foidevxxx.txt  (for each file)
-
-       Note: If does2unix finds binary control characters, remove them using vim like this:
-
-            :%s/\%x13/ /g
- 
-    3. Then edit and remove the first line, the column header.
-    
-    4. Since it may be unclear which file or files contain the needed data, I catenated the xxxAdd.txt files to the main xxx.txt file, so there ise one single file;
-       for example,
-    
-          cat foidev*.txt >> foidev-all.txt
-    
-       or
-          cat foidev*.txt >> devicefoi.txt 
-        
-    5. Remove column header first line from the file if not already done in #2.
-    
-    6. Sort the file numberically on the first column, and then use that result to remove duplicate adjacent rows:
-    
-        sort -t"|" -n -k 1 devicefoi.txt | uniq -u > devicefoi-nodups.txt 
-    
-    7. Confirm there are no duplicates. Note: -d only prints duplicate lines.
-    
-        sort -t"|" -n -k 1 devicefoi-nodups.txt | uniq -d    
-    
-    Note: To display only certain columns after sorting, do
-    
-        sort -t"|" -n -k 1 devicefoi.txt | cut -d'|' -f1 | more
-
-    8. After confirming there are no duplicates, rename the file
-
-       mv devicefoi-nodups.txt  devicefoi.txt
-    
+   Edit prep/maude-arrays.php, which is self explanatory. Then run prep/prep-files.php. See internals of prep-files.php for an explanation of what it does.
+       
 4. If the above .txt files contain a lot of old data that already exists in the medwatch table, we can be be manually remove this redundant data by
     
         1. First determing the max(medwatch.mdr_report_key) in the current medwatch table.
