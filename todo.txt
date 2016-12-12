@@ -1,5 +1,22 @@
 # TODO
 
-~/fda/prep/prep-files.php is not removing duplicate lines for some reason.
+We are getting a MySQL error:
+   Error message is: SQLSTATE[HY000]: General error: 1364 Field 'text_key' doesn't have a default value
+ 
+Recall textfoi's schema has a unique text_key, in addition to the primary key of id:
+
+CREATE TABLE IF NOT EXISTS `textfoi` (
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  mdr_report_key int(11) unsigned NOT NULL,
+  text_key int(11) unsigned NOT NULL,
+  text_type_code CHAR(1) NOT NULL,
+  event_date DATE,
+  text_report TEXT,
+  PRIMARY KEY (id),
+  UNIQUE (text_key)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+It doesn't appear that the text_key is never really used. It isn't part of medwatch_report. Is it part of the JOIN used to update medwath_report?
+My guess is, it can simply be removed, and the code can be rerun/tested.
 
 Change (b)(6) to something else, maybe ______, (omitted).
