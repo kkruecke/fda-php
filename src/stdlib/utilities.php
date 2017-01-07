@@ -3,7 +3,7 @@
 function ucfirstword_sentences(string $str) : string
 {
    $line = preg_replace_callback(
-            '/(?:\.|\?|!)(\s+)[a-z]/',
+            '/(?:\.|\?|!)(\s+)[a-z]/', 
             function ($matches) {
                 return strtoupper($matches[0]); 
             },

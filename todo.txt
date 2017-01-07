@@ -1,5 +1,0 @@
-# TODO
-
-TODO: Write a snippet of PHP code that works correctly to insert a new text record. Then alter the code base accordingly.
-
-Change (b)(6) to something else, maybe ______, (omitted).

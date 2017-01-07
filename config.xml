@@ -2,12 +2,12 @@
 <configuration>
 <database>
   <host>localhost</host>
-  <name>medwatch</name>
+  <name>maude_medwatch</name>
   <user>kurt</user>
   <password>kk0457</password>
 </database>
 <files>
-    <file name="data/foidev.txt" functor="Maude\DeviceTableFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
+    <file name="data/devicefoi.txt" functor="Maude\DeviceTableFunctor" dbinsert_iter="Maude\DeviceTableInsertIterator">
     <indecies>
         <index field_name="mdr_report_key">0</index>
         <index field_name="device_sequence_no">4</index>
@@ -21,7 +21,7 @@
         <index field_name="date_received">7</index>
     </indecies>
     </file>
-    <file name="data/foitext.txt"  functor="Maude\TextTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
+    <file name="data/textfoi.txt"  functor="Maude\TextTableFunctor" dbinsert_iter="Maude\TextTableInsertIterator">
     <indecies>
         <index field_name="mdr_report_key">0</index>
         <index field_name="text_key">1</index>
