@@ -86,9 +86,9 @@ Steps I Use
 
 2. Use maude.sql to create temporary tables to hold the new lasik records that we find in maude .txt files
 
-    1. foidevice
-    2. foimdr
-    3. foitext
+    - foidevice
+    - foimdr
+    - foitext
 
     CREATE TABLE IF NOT EXISTS devicefoi (
       mdr_report_key bigint NOT NULL,
