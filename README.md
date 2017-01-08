@@ -90,6 +90,8 @@ Steps I Use
     - foimdr
     - foitext
 
+```sql
+
     CREATE TABLE IF NOT EXISTS devicefoi (
       mdr_report_key bigint NOT NULL,
       device_product_code CHAR(3) NOT NULL, 
@@ -114,6 +116,7 @@ Steps I Use
       UNIQUE KEY(mdr_report_key),
       FOREIGN KEY (mdr_report_key) REFERENCES devicefoi(mdr_report_key) ON DELETE CASCADE
     ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+```
         
 3. To prepare the maude .txt files
     
