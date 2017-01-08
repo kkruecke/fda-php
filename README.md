@@ -96,7 +96,6 @@ Steps I Use
       PRIMARY KEY (mdr_report_key)
     ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
     
-    
     CREATE TABLE IF NOT EXISTS mdrfoi (
       id int(11) NOT NULL AUTO_INCREMENT,
       mdr_report_key bigint NOT NULL,
